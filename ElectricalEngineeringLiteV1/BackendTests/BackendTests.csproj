@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{822FEC1D-2C81-4128-907C-14D472BECFF4}</ProjectGuid>
+        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>BackendTests</RootNamespace>
+        <AssemblyName>BackendTests</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="netDxf, Version=2022.11.2.0, Culture=neutral, PublicKeyToken=618c63290969e781, processorArchitecture=MSIL">
+          <HintPath>..\packages\netDxf.2022.11.2\lib\net45\netDxf.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+        <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+            <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="BusbarFillControllerTests.cs" />
+        <Compile Include="CableFillControllerTest.cs" />
+        <Compile Include="CADCoreTests.cs" />
+        <Compile Include="CalculationsTests.cs" />
+        <Compile Include="ConsumerFillControllerTests.cs" />
+        <Compile Include="ElectricalPanelFillControllerTests.cs" />
+        <Compile Include="FeederFillControllerTests.cs" />
+        <Compile Include="NodeTests.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\BillingFillingController_V02\BillingFillingController_V02.csproj">
+        <Project>{492c3314-a1bd-4be9-9f60-2079728dd634}</Project>
+        <Name>BillingFillingController_V02</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\CADCore\CADCore.csproj">
+        <Project>{69476e7e-ee79-416e-8350-ce1af346eece}</Project>
+        <Name>CADCore</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\CoreV02\CoreV02.csproj">
+        <Project>{953b95ea-8cf2-4b97-8e76-f8c25b6f1c43}</Project>
+        <Name>CoreV02</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\DataBase\DataBase.csproj">
+        <Project>{ffd1cd26-4818-4c75-8869-18f6569a7960}</Project>
+        <Name>DataBase</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV2.csproj">
+        <Project>{fc27a050-25d8-4c56-8263-8b1d3e984b24}</Project>
+        <Name>ElectricalEngineeringLiteV2</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

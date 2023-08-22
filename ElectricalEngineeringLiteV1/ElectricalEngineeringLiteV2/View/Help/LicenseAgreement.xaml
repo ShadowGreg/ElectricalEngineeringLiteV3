@@ -1,0 +1,34 @@
+﻿<Window
+    Height="450"
+    Title="Лицензионное соглашение"
+    Width="800"
+    mc:Ignorable="d"
+    x:Class="ElectricalEngineeringLiteV1.View.Help.LicenseAgreement"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <FlowDocumentReader>
+            <FlowDocument
+                ColumnWidth="400"
+                IsHyphenationEnabled="True"
+                IsOptimalParagraphEnabled="True">
+                <Section FontSize="12">
+                    <Paragraph>
+                        <Bold>Лицензионное соглашение для бесплатного использования</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        Код, предоставленный в этом документе, предоставляется на условиях лицензии "как есть", без каких-либо явных или подразумеваемых гарантий (согласно статье 437 Гражданского кодекса Российской Федерации).
+                    </Paragraph>
+                    <Paragraph>
+                        Вы можете свободно использовать этот код в личных и коммерческих целях без необходимости получения дополнительного разрешения или уведомления. Однако, в соответствии со статьей 1229 Гражданского кодекса Российской Федерации, использование этого кода для создания платных продуктов и услуг без соответствующего разрешения автора запрещено.
+                    </Paragraph>
+                    <Paragraph>
+                        Автор не несет ответственности за любой ущерб, возникший в результате использования этого продукта (в соответствии со статьей 1064 Гражданского кодекса Российской Федерации).
+                    </Paragraph>
+                </Section>
+            </FlowDocument>
+        </FlowDocumentReader>
+    </Grid>
+</Window>

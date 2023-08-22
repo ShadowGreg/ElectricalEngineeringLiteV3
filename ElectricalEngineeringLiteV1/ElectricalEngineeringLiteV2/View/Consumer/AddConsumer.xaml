@@ -1,0 +1,158 @@
+﻿<Window
+    Height="520"
+    Title="Мастер добавления электроприёмника"
+    Width="800"
+    mc:Ignorable="d"
+    x:Class="ElectricalEngineeringLiteV1.View.Consumer.AddConsumer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <StackPanel Margin="10">
+            <GroupBox
+                Header="Параметры электроприёмника"
+                Margin="10"
+                Padding="10">
+                <ScrollViewer Height="350">
+                    <Grid DataContext="{DynamicResource ViewModel}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Technological Number  -->
+                        <Label Content="Технологический номер:" Grid.Row="0" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Text="{Binding AddedConsumer.TechnologicalNumber, Mode=TwoWay}"
+                            TextChanged="TextBoxBase_OnTextChanged" />
+                        <!--  Mechanism Name  -->
+                        <Label Content="Наименование электроприёмника" Grid.Row="1" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Text="{Binding AddedConsumer.MechanismName}" />
+                        <!--  Load Type  -->
+                        <Label Content="Тип технологической нагрузки:" Grid.Row="2" />
+                        <ComboBox
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            SelectedItem="{Binding LoadType}">
+                            <ComboBoxItem Content="Technological" />
+                            <ComboBoxItem Content="Sanitary" />
+                            <ComboBoxItem Content="Lighting" />
+                            <ComboBoxItem Content="Heating" />
+                            <ComboBoxItem Content="Electric Heating" />
+                            <ComboBoxItem Content="Other" />
+                            <ComboBoxItem Content="Reserve" />
+                            <ComboBoxItem Content="Reactive Power Compensation" />
+                        </ComboBox>
+                        <!--  Starting Current Multiplicity  -->
+                        <Label Content="Коэффициент (кратность) пускового тока:" Grid.Row="3" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            Text="{Binding AddedConsumer.StartingCurrentMultiplicity}" />
+                        <!--  Rated Electric Power  -->
+                        <Label Content="Номинальная электрическая мощность, кВт:" Grid.Row="4" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="4"
+                            Text="{Binding AddedConsumer.RatedElectricPower}" />
+                        <!--  Usage Factor  -->
+                        <Label Content="Коэффициент использования:" Grid.Row="5" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="5"
+                            Text="{Binding AddedConsumer.UsageFactor}" />
+                        <!--  Power Factor  -->
+                        <Label Content="Коэффициент мощности косинус фи:" Grid.Row="6" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="6"
+                            Text="{Binding AddedConsumer.PowerFactor}" />
+                        <!--  Efficiency Factor  -->
+                        <Label Content="Коэффициент полезного действия КПД:" Grid.Row="8" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="8"
+                            Text="{Binding AddedConsumer.EfficiencyFactor}" />
+                        <!--  Type Grounding System  -->
+                        <Label Content="Тип системы заземления TN-C-S:" Grid.Row="9" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="9"
+                            Text="{Binding AddedConsumer.TypeGroundingSystem}" />
+                        <!--  Voltage  -->
+                        <Label Content="Напряжение, В:" Grid.Row="10" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="10"
+                            Text="{Binding AddedConsumer.Voltage}" />
+                        <!--  Phase Number  -->
+                        <Label Content="Количество фаз:" Grid.Row="11" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="11"
+                            Text="{Binding AddedConsumer.PhaseNumber}" />
+                        <!--  Number Electrical Receivers  -->
+                        <Label Content="Количество электроприёмников:" Grid.Row="12" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="12"
+                            Text="{Binding AddedConsumer.NumberElectricalReceivers}" />
+                        <!--  Hours Worked Per Year  -->
+                        <Label Content="Количество часов работы в год:" Grid.Row="13" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="13"
+                            Text="{Binding AddedConsumer.HoursWorkedPerYear}" />
+                        <!--  Location Equipment Installation  -->
+                        <Label Content="Номер помещения по генплну:" Grid.Row="14" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="14"
+                            Text="{Binding AddedConsumer.LocationEquipmentInstallation}" />
+                        <!--  Classification Equipment Installation  -->
+                        <Label Content="Классификация помещняи по взрыво-,пожароопасности зон:" Grid.Row="15" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="15"
+                            Text="{Binding AddedConsumer.ClassificationEquipmentInstallation}" />
+                    </Grid>
+                </ScrollViewer>
+            </GroupBox>
+            <!--  Save Button  -->
+            <Button
+                Click="SaveButton_Click"
+                Content="Добавить электроприёмник"
+                HorizontalAlignment="Right"
+                Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>

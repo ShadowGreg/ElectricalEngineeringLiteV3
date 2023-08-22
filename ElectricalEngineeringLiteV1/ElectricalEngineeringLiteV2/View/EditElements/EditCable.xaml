@@ -1,0 +1,129 @@
+﻿<Window
+    Height="520"
+    Title="Редактор кабель"
+    Width="800"
+    mc:Ignorable="d"
+    x:Class="ElectricalEngineeringLiteV1.View.EditElements.EditCable"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <StackPanel Margin="10">
+            <GroupBox
+                Header="Параметры кабеля"
+                Margin="10"
+                Padding="10">
+                <ScrollViewer Height="350">
+                    <Grid DataContext="{DynamicResource ViewModel}" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Cable Name  -->
+                        <Label Content="Наименование кабеля:" Grid.Row="0" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Text="{Binding SelectedObject.Obj.CableName}" />
+                        <!--  Cable Brand  -->
+                        <Label Content="Марка кабеля:" Grid.Row="1" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Text="{Binding SelectedObject.Obj.CableBrand}" />
+                        <!--  Cable Material  -->
+                        <Label Content="Материал кабеля:" Grid.Row="2" />
+                        <ComboBox
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            SelectedItem="{Binding CableMaterial}">
+                            <ComboBoxItem Content="Copper" />
+                            <ComboBoxItem Content="Aluminum" />
+                        </ComboBox>
+                        <!--  Cores Number  -->
+                        <Label Content="Число жил в кабеле:" Grid.Row="3" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            Text="{Binding SelectedObject.Obj.CoresNumber}" />
+                        <!--  Cable Cross Section  -->
+                        <Label Content="Сечение кабеля, мм2:" Grid.Row="4" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="4"
+                            Text="{Binding SelectedObject.Obj.CableCrossSection}" />
+                        <!--  Number In Feeder  -->
+                        <Label Content="Количество кабелей в фидере:" Grid.Row="5" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="5"
+                            Text="{Binding SelectedObject.Obj.NumberInFeeder}" />
+                        <!--  Cable Length  -->
+                        <Label Content="Длина кабеля, м:" Grid.Row="6" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="6"
+                            Text="{Binding SelectedObject.Obj.CableLength}" />
+                        <!--  Cable Voltage Loss  -->
+                        <Label Content="Потеря напряжения в кабеле, %:" Grid.Row="7" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="7"
+                            IsReadOnly="True"
+                            Text="{Binding SelectedObject.Obj.CableVoltageLoss}" />
+                        <!--  Cable Current  -->
+                        <Label Content="Ток в кабеле, А:" Grid.Row="8" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="8"
+                            IsReadOnly="True"
+                            Text="{Binding SelectedObject.Obj.CableCurrent}" />
+                        <!--  Max Cable Current  -->
+                        <Label Content="Максимальный ток в кабеле, А:" Grid.Row="9" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="9"
+                            IsReadOnly="True"
+                            Text="{Binding SelectedObject.Obj.MaxCableCurrent}" />
+                        <!--  Short Circuit Current  -->
+                        <Label Content="Ток короткого замыкания, кА:" Grid.Row="10" />
+                        <TextBox
+                            Grid.Column="1"
+                            Grid.Row="10"
+                            IsReadOnly="True"
+                            Text="{Binding SelectedObject.Obj.ShortCircuitCurrent}" />
+                    </Grid>
+                </ScrollViewer>
+            </GroupBox>
+            <!--  Save Button  -->
+            <Button
+                Click="Close_Window"
+                Content="Сохранить и закрыть окно"
+                HorizontalAlignment="Right"
+                Margin="10" />
+        </StackPanel>
+    </Grid>
+</Window>

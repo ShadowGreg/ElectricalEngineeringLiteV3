@@ -1,0 +1,6 @@
+C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CoreV02\bin\Debug\CoreV02.dll
+C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CoreV02\bin\Debug\CoreV02.pdb
+C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CoreV02\obj\Debug\CoreV02.csproj.AssemblyReference.cache
+C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CoreV02\obj\Debug\CoreV02.csproj.CoreCompileInputs.cache
+C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CoreV02\obj\Debug\CoreV02.dll
+C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CoreV02\obj\Debug\CoreV02.pdb
