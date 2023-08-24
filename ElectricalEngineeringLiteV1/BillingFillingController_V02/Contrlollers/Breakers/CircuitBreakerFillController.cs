@@ -7,14 +7,12 @@ namespace BillingFillingController.Contrlollers.Breakers {
         private readonly BreakerData _breakerData = new BreakerData();
 
         public BaseCircuitBreaker GetInputSwitch(double inRatedCurrent) {
-            var switchKey = GetKey(_breakerData._theePolesBreakerData, inRatedCurrent);
+            double switchKey = GetKey(_breakerData._theePolesBreakerData, inRatedCurrent);
             return _breakerData._theePolesBreakerData[switchKey];
         }
 
         public BaseCircuitBreaker BreakerSelect(BaseConsumer consumer, BaseCable cable) {
-            if (consumer.Voltage < 380) {
-                return GetSinglePolesBreaker(consumer, cable);
-            }
+            if (consumer.Voltage < 380) return GetSinglePolesBreaker(consumer, cable);
 
             return GetTreePolesBreaker(consumer, cable);
         }
@@ -44,10 +42,10 @@ namespace BillingFillingController.Contrlollers.Breakers {
         private double GetKey(Dictionary<double, BaseCircuitBreaker> somePolesBreakerData, double consumerCurrent) {
             double maxKey = 0;
             double maxValue = double.MaxValue;
-            var keys = new List<double>(somePolesBreakerData.Keys);
+            List<double> keys = new List<double>(somePolesBreakerData.Keys);
             for (int i = 0; i < keys.Count; i++) {
                 double key = keys[i];
-                var value = somePolesBreakerData[key].RatedCurrent;
+                double value = somePolesBreakerData[key].RatedCurrent;
                 if (value > consumerCurrent && i < 2) {
                     maxKey = key;
                     maxValue = value;

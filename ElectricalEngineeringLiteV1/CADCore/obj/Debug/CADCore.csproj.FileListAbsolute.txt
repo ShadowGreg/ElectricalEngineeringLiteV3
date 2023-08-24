@@ -9,3 +9,14 @@ C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CADCore\obj
 C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CADCore\obj\Debug\CADCore.pdb
 C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CADCore\bin\Debug\CoreV02.dll
 C:\workspace\ElectricalEngineeringLiteV2\ElectricalEngineeringLiteV1\CADCore\bin\Debug\CoreV02.pdb
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\bin\Debug\CADCore.dll
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\bin\Debug\CADCore.pdb
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\bin\Debug\CoreV02.dll
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\bin\Debug\netDxf.dll
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\bin\Debug\CoreV02.pdb
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\bin\Debug\netDxf.xml
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\obj\Debug\CADCore.csproj.AssemblyReference.cache
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\obj\Debug\CADCore.csproj.CoreCompileInputs.cache
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\obj\Debug\CADCore.csproj.CopyComplete
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\obj\Debug\CADCore.dll
+C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\CADCore\obj\Debug\CADCore.pdb

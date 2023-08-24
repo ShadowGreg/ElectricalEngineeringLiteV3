@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{FC27A050-25D8-4C56-8263-8B1D3E984B24}</ProjectGuid>
+        <OutputType>WinExe</OutputType>
+        <RootNamespace>ElectricalEngineeringLiteV1</RootNamespace>
+        <AssemblyName>ElectricalEngineeringLiteV3</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <WarningLevel>4</WarningLevel>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <ApplicationIcon>Icon\img.ico</ApplicationIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="netDxf, Version=2022.11.2.0, Culture=neutral, PublicKeyToken=618c63290969e781, processorArchitecture=MSIL">
+            <HintPath>..\packages\netDxf.2022.11.2\lib\net45\netDxf.dll</HintPath>
+        </Reference>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Xml"/>
+        <Reference Include="System.Xaml">
+            <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="WindowsBase"/>
+        <Reference Include="PresentationCore"/>
+        <Reference Include="PresentationFramework"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ApplicationDefinition Include="App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </ApplicationDefinition>
+        <Compile Include="App.xaml.cs">
+            <DependentUpon>App.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="ViewModel\ConsumerUI.cs"/>
+        <Compile Include="ViewModel\PartCalculationTable.cs"/>
+        <Compile Include="ViewModel\PartNetworkTable.cs"/>
+        <Compile Include="ViewModel\PartToolBarAndPropertyes.cs"/>
+        <Compile Include="ViewModel\Base.cs"/>
+        <Compile Include="ViewModel\Util\Row.cs"/>
+        <Compile Include="View\CenterFrame\CalculationTableOfDistributionNetwork.xaml.cs">
+            <DependentUpon>CalculationTableOfDistributionNetwork.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\CenterFrame\DistributionNetworkTable\DistributionNetworkTable.xaml.cs">
+            <DependentUpon>DistributionNetworkTable.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\CenterFrame\DistributionNetworkTable\Utils\Node.cs"/>
+        <Compile Include="View\Consumer\AddConsumer.xaml.cs">
+            <DependentUpon>AddConsumer.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Consumer\EditConsumer.xaml.cs">
+            <DependentUpon>EditConsumer.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\EditElements\EditCable.xaml.cs">
+            <DependentUpon>EditCable.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\EditElements\EditCircuitBreaker.xaml.cs">
+            <DependentUpon>EditCircuitBreaker.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Help\JobDescription.xaml.cs">
+            <DependentUpon>JobDescription.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Help\LicenseAgreement.xaml.cs">
+            <DependentUpon>LicenseAgreement.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\MainWindow.xaml.cs">
+            <DependentUpon>MainWindow.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="View\ObjectPropertiesWindow.xaml.cs">
+            <DependentUpon>ObjectPropertiesWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="View\Toolbox.xaml.cs">
+            <DependentUpon>Toolbox.xaml</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="Properties\Resources.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Include="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config"/>
+        <None Include="Icon\img01.ico"/>
+        <None Include="Icon\img01.jpg"/>
+        <None Include="Icon\img01.png"/>
+        <None Include="Icon\img03.ico"/>
+        <None Include="packages.config"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Include="View\CenterFrame\CalculationTableOfDistributionNetwork.xaml"/>
+        <Page Include="View\CenterFrame\DistributionNetworkTable\DistributionNetworkTable.xaml"/>
+        <Page Include="View\Consumer\AddConsumer.xaml"/>
+        <Page Include="View\Consumer\EditConsumer.xaml"/>
+        <Page Include="View\EditElements\EditCable.xaml"/>
+        <Page Include="View\EditElements\EditCircuitBreaker.xaml"/>
+        <Page Include="View\Help\JobDescription.xaml"/>
+        <Page Include="View\Help\LicenseAgreement.xaml"/>
+        <Page Include="View\MainWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Include="View\ObjectPropertiesWindow.xaml"/>
+        <Page Include="View\Toolbox.xaml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\BillingFillingController_V02\BillingFillingController_V02.csproj">
+            <Project>{492c3314-a1bd-4be9-9f60-2079728dd634}</Project>
+            <Name>BillingFillingController_V02</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\CADCore\CADCore.csproj">
+            <Project>{69476e7e-ee79-416e-8350-ce1af346eece}</Project>
+            <Name>CADCore</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\CoreV02\CoreV02.csproj">
+            <Project>{953b95ea-8cf2-4b97-8e76-f8c25b6f1c43}</Project>
+            <Name>CoreV02</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\DataBaseV02\DataBaseV02.csproj">
+            <Project>{ffd1cd26-4818-4c75-8869-18f6569a7960}</Project>
+            <Name>DataBaseV02</Name>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="Icon\img.ico"/>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+</Project>

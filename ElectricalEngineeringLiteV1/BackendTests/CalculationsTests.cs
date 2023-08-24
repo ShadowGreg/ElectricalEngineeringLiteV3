@@ -7,19 +7,19 @@ using NUnit.Framework;
 namespace BackendTests.Properties {
     [TestFixture]
     public class CalculationsTests {
-        private List<BaseConsumer> _consumers;
-        private ElectricalPanelFillController _electricalPanelFillController;
-
         [SetUp]
         public void Setup() {
             _electricalPanelFillController = new ElectricalPanelFillController();
         }
 
+        private List<BaseConsumer> _consumers;
+        private ElectricalPanelFillController _electricalPanelFillController;
+
         [Test]
         public void Calculation_Of_The_Parameters_Of_The_Electrical_Receiver_Test() {
             // Arrange
-            ConsumerFillController consumerController = new ConsumerFillController();
-            BaseConsumer actualConsumer = new BaseConsumer() {
+            var consumerController = new ConsumerFillController();
+            var actualConsumer = new BaseConsumer {
                 TechnologicalNumber = "030-Р-008A",
                 MechanismName = "Насос Xylem, LOWARA",
                 RatedElectricPower = 10,
@@ -30,7 +30,7 @@ namespace BackendTests.Properties {
                 LocationEquipmentInstallation = "102",
                 StartingCurrentMultiplicity = 11
             };
-            BaseConsumer expectedConsumer = new BaseConsumer() {
+            var expectedConsumer = new BaseConsumer {
                 TechnologicalNumber = "030-Р-008A",
                 MechanismName = "Насос Xylem, LOWARA",
                 RatedElectricPower = 10,
@@ -60,7 +60,7 @@ namespace BackendTests.Properties {
         public void Basic_Calculations_For_Asingle_Electrical_Receiver_Test() {
             // Arrange
             _electricalPanelFillController.AddOnPanel(new List<BaseConsumer> {
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008A",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -70,7 +70,7 @@ namespace BackendTests.Properties {
                     HoursWorkedPerYear = 8700,
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 11
-                },
+                }
             });
             const double expectedRatedCurrentOnPanel = 15.301461463655684d;
 
@@ -80,12 +80,12 @@ namespace BackendTests.Properties {
             // Assert
             Assert.AreEqual(actualRatedCurrentOnPanel, expectedRatedCurrentOnPanel);
         }
-        
+
         [Test]
         public void Calculation_Of_Electrical_Panel_Parameters_For_Multiple_Receivers_Test() {
             // Arrange
             _electricalPanelFillController.AddOnPanel(new List<BaseConsumer> {
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008A",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -96,7 +96,7 @@ namespace BackendTests.Properties {
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 11
                 },
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008B",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -107,7 +107,7 @@ namespace BackendTests.Properties {
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 10
                 },
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008C",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -118,7 +118,7 @@ namespace BackendTests.Properties {
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 10
                 },
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008D",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -128,7 +128,7 @@ namespace BackendTests.Properties {
                     HoursWorkedPerYear = 8700,
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 10
-                },
+                }
             });
             const double expectedRatedCurrentOnPanel = 53.114551365702411d;
 
@@ -138,13 +138,13 @@ namespace BackendTests.Properties {
             // Assert
             Assert.AreEqual(actualRatedCurrentOnPanel, expectedRatedCurrentOnPanel);
         }
-        
-        
+
+
         [Test]
         public void Calculation_Of_Parameters_Of_Electric_Panel_With_Several_Receivers_Two_Of_Them_Single_Phase_Test() {
             // Arrange
             _electricalPanelFillController.AddOnPanel(new List<BaseConsumer> {
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008A",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -155,7 +155,7 @@ namespace BackendTests.Properties {
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 11
                 },
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008B",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -166,7 +166,7 @@ namespace BackendTests.Properties {
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 10
                 },
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008C",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -177,7 +177,7 @@ namespace BackendTests.Properties {
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 10
                 },
-                new BaseConsumer() {
+                new BaseConsumer {
                     TechnologicalNumber = "030-Р-008D",
                     MechanismName = "Насос Xylem, LOWARA",
                     RatedElectricPower = 10,
@@ -187,7 +187,7 @@ namespace BackendTests.Properties {
                     HoursWorkedPerYear = 8700,
                     LocationEquipmentInstallation = "102",
                     StartingCurrentMultiplicity = 10
-                },
+                }
             });
             const double expectedRatedCurrentOnPanel = 53.114551365702411d;
 

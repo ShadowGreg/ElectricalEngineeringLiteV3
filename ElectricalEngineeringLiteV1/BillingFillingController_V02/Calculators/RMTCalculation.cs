@@ -8,92 +8,88 @@ namespace BillingFillingController.Calculators {
         private List<BaseConsumer> _consumers;
 
         /// <summary>
-        /// Физическое число электроприёмников
+        ///     Физическое число электроприёмников
         /// </summary>
-        public int NumberOfReceivers { get; set; } = 0;
+        public int NumberOfReceivers { get; set; }
 
         /// <summary>
-        /// номинальная мощность
+        ///     номинальная мощность
         /// </summary>
-        public double RatedPower { get; private set; } = 0;
+        public double RatedPower { get; private set; }
 
         /// <summary>
-        /// номинальная мощность одинаковых электро приёмников
+        ///     номинальная мощность одинаковых электро приёмников
         /// </summary>
-        public double RatedPowerOfIdenticalElectricalReceivers { get; private set; } = 0;
+        public double RatedPowerOfIdenticalElectricalReceivers { get; private set; }
 
         /// <summary>
-        /// коэффициент использования шины
+        ///     коэффициент использования шины
         /// </summary>
-        public double BusUtilizationFactor { get; private set; } = 0;
+        public double BusUtilizationFactor { get; private set; }
 
         /// <summary>
-        /// коэффициента мощности шины
+        ///     коэффициента мощности шины
         /// </summary>
-        public double BusPowerFactor { get; private set; } = 0;
+        public double BusPowerFactor { get; private set; }
 
         /// <summary>
-        /// Тангенс коэффициента мощности шины
+        ///     Тангенс коэффициента мощности шины
         /// </summary>
-        public double TangentOfBusPowerFactor { get; private set; } = 0;
+        public double TangentOfBusPowerFactor { get; private set; }
 
         /// <summary>
-        /// активная средняя расчётная мощность
+        ///     активная средняя расчётная мощность
         /// </summary>
-        public double ActiveAverageDesignPower { get; private set; } = 0;
+        public double ActiveAverageDesignPower { get; private set; }
 
         /// <summary>
-        /// реактивная средняя расчётная мощность 
+        ///     реактивная средняя расчётная мощность
         /// </summary>
-        public double ReactiveAverageRatedPower { get; private set; } = 0;
+        public double ReactiveAverageRatedPower { get; private set; }
 
         /// <summary>
-        /// Эквивалентное число электро приёмников на шине
+        ///     Эквивалентное число электро приёмников на шине
         /// </summary>
-        public int EquivalentNumberOfElectricalReceivers { get; private set; } = 0;
+        public int EquivalentNumberOfElectricalReceivers { get; private set; }
 
         /// <summary>
-        /// квадрат номинальной мощности 
+        ///     квадрат номинальной мощности
         /// </summary>
-        public double SquareOfRatedPower { get; private set; } = 0;
+        public double SquareOfRatedPower { get; private set; }
 
         /// <summary>
-        /// коэффициент расчётной нагрузки
+        ///     коэффициент расчётной нагрузки
         /// </summary>
-        public double DesignLoadFactor { get; private set; } = 0;
+        public double DesignLoadFactor { get; private set; }
 
         /// <summary>
-        /// активная расчётная мощность шины
+        ///     активная расчётная мощность шины
         /// </summary>
-        public double ActiveRatedPowerOfTheBus { get; private set; } = 0;
+        public double ActiveRatedPowerOfTheBus { get; private set; }
 
         /// <summary>
-        /// реактивная расчётная мощность шины 
+        ///     реактивная расчётная мощность шины
         /// </summary>
-        public double ReactiveRatedPowerOfTheBus { get; private set; } = 0;
+        public double ReactiveRatedPowerOfTheBus { get; private set; }
 
         /// <summary>
-        /// полная расчётная мощность шины 
+        ///     полная расчётная мощность шины
         /// </summary>
-        public double TotalDesignPowerOfTheBus { get; private set; } = 0;
+        public double TotalDesignPowerOfTheBus { get; private set; }
 
         /// <summary>
-        /// Расчётный ток на шине
+        ///     Расчётный ток на шине
         /// </summary>
-        public double DesignBusbarCurrent { get; private set; } = 0;
+        public double DesignBusbarCurrent { get; private set; }
 
         public double GetInstallCapacity(List<BaseConsumer> consumers, double voltage) {
             _consumers = consumers;
             NumberOfReceivers = consumers.Count;
             RatedPower = 0;
-            foreach (var VARIABLE in consumers) {
-                RatedPower += VARIABLE.RatedElectricPower;
-            }
+            foreach (var VARIABLE in consumers) RatedPower += VARIABLE.RatedElectricPower;
 
             RatedPowerOfIdenticalElectricalReceivers = 0;
-            foreach (var VARIABLE in consumers) {
-                RatedPowerOfIdenticalElectricalReceivers += VARIABLE.RatedElectricPower;
-            }
+            foreach (var VARIABLE in consumers) RatedPowerOfIdenticalElectricalReceivers += VARIABLE.RatedElectricPower;
 
             BusUtilizationFactor = consumers.Sum(consumer => consumer.UsageFactor * consumer.RatedElectricPower) /
                                    consumers.Sum(consumer => consumer.RatedElectricPower);
@@ -117,9 +113,7 @@ namespace BillingFillingController.Calculators {
         private double GetReactiveRatedPowerOfTheBus() {
             double sum = _consumers.Sum(consumer =>
                 consumer.RatedElectricPower * consumer.UsageFactor * consumer.TanPowerFactor);
-            if (EquivalentNumberOfElectricalReceivers <= 10) {
-                return 1.1 * sum;
-            }
+            if (EquivalentNumberOfElectricalReceivers <= 10) return 1.1 * sum;
 
             return sum;
         }
@@ -139,9 +133,7 @@ namespace BillingFillingController.Calculators {
         private int GetEquivalentNumberOfElectricalReceivers() {
             double temp = Math.Pow(_consumers.Sum(consumer => consumer.RatedElectricPower), 2) /
                           SquareOfRatedPower;
-            if (temp < 0) {
-                return 1;
-            }
+            if (temp < 0) return 1;
 
             return (int)Math.Floor(temp);
         }

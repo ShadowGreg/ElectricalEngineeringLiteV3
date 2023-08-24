@@ -9,12 +9,14 @@ using netDxf.Tables;
 
 namespace CADCore {
     public class DXFController {
-        // https://github.com/haplokuon/netDxf/tree/master
-        private DxfDocument doc;
-
         // your DXF file name
         private string _fileName;
-        private Layer main, table, text;
+
+        // https://github.com/haplokuon/netDxf/tree/master
+        private readonly DxfDocument doc;
+        private Layer main;
+        private readonly Layer table;
+        private readonly Layer text;
 
 
         public DXFController(string fileNameName = "sample.dxf") {
@@ -28,9 +30,9 @@ namespace CADCore {
 
 
         private MText DimensionText(Vector2 position, double rotation, string text) {
-            MText mText = new MText(text, position, 2.5, 0.0) {
+            var mText = new MText(text, position, 2.5, 0.0) {
                 AttachmentPoint = MTextAttachmentPoint.BottomCenter,
-                Rotation = rotation * MathHelper.RadToDeg,
+                Rotation = rotation * MathHelper.RadToDeg
             };
 
             return mText;
@@ -45,17 +47,17 @@ namespace CADCore {
             doc.Save(_fileName);
 
             // this check is optional but recommended before loading a DXF file
-            DxfVersion dxfVersion = DxfDocument.CheckDxfFileVersion(_fileName);
+            var dxfVersion = DxfDocument.CheckDxfFileVersion(_fileName);
             // netDxf is only compatible with AutoCad2000 and higher DXF versions
             if (dxfVersion < DxfVersion.AutoCad2000) throw new Exception("Версия ниже AutoCad2000");
 
             // load file
-            DxfDocument loaded = DxfDocument.Load(_fileName);
+            var loaded = DxfDocument.Load(_fileName);
         }
 
         private void AddTextToDoc(List<TextData> textCoordinate, double[] delta) {
             foreach (var data in textCoordinate) {
-                MText entity =
+                var entity =
                     DimensionTextByData(new TextData(
                         new Vector2(data.Position.X + delta[0], data.Position.Y + delta[1]),
                         data.Rotation,
@@ -68,8 +70,8 @@ namespace CADCore {
         }
 
         private void AddCirclesToDoc(List<double[]> Coordinate, double[] delta) {
-            foreach (var coord in Coordinate) {
-                Circle entity = new Circle(new Vector2(coord[0] + delta[0], coord[1] + delta[1]), coord[2]);
+            foreach (double[] coord in Coordinate) {
+                var entity = new Circle(new Vector2(coord[0] + delta[0], coord[1] + delta[1]), coord[2]);
                 entity.Layer = table;
                 // add your entities here
                 doc.Entities.Add(entity);
@@ -77,8 +79,8 @@ namespace CADCore {
         }
 
         private void AddLineToDoc(List<double[]> linesCoordinate, double[] delta) {
-            foreach (var coord in linesCoordinate) {
-                Line entity = new Line(new Vector2(coord[0] + delta[0], coord[1] + delta[1]),
+            foreach (double[] coord in linesCoordinate) {
+                var entity = new Line(new Vector2(coord[0] + delta[0], coord[1] + delta[1]),
                     new Vector2(coord[2] + delta[0], coord[3] + delta[1]));
                 entity.Layer = table;
                 // add your entities here
@@ -94,12 +96,12 @@ namespace CADCore {
         }
 
         /// <summary>
-        /// Отрисовка штампа однолинейной схемы
+        ///     Отрисовка штампа однолинейной схемы
         /// </summary>
         /// <param name="start">На вход идут координаты по нижнему - левому краю старта</param>
         /// <returns>возвращет правый нижний край конца</returns>
         public Vector2 DrawDiagramFrame(Vector2 start) {
-            List<double[]> cooding = new List<double[]>() {
+            List<double[]> cooding = new List<double[]> {
                 new[] { 70.00, 70.00, 10.00, 70.00 },
                 new[] { 35.00, 85.00, 35.00, 200.00 },
                 new[] { 70.00, 85.00, 0.00, 85.00 },
@@ -123,14 +125,14 @@ namespace CADCore {
                 new[] { 10.00, 0.00, 10.00, 85.00 }
             };
 
-            foreach (var coord in cooding) {
-                Line entity = new Line(new Vector2(coord[0], coord[1]), new Vector2(coord[2], coord[3]));
+            foreach (double[] coord in cooding) {
+                var entity = new Line(new Vector2(coord[0], coord[1]), new Vector2(coord[2], coord[3]));
                 entity.Layer = table;
                 // add your entities here
                 doc.Entities.Add(entity);
             }
 
-            List<TextData> textDatas = new List<TextData>() {
+            List<TextData> textDatas = new List<TextData> {
                 ///1.5707963 угол в 90 градусов
                 new TextData(new Vector2(11.5309, 210.00), 1.5707963, "Пусковой \\Pаппарат"),
                 new TextData(new Vector2(42.50, 206.0804), 0, "Тип, \\PIн"),
@@ -157,11 +159,11 @@ namespace CADCore {
                 new TextData(new Vector2(5.00, 42.50), 1.5707963, "Электроприемник"),
                 new TextData(new Vector2(40.00, 45.00), 0, "Рном, кВт"),
                 new TextData(new Vector2(40.00, 77.50), 0, "\\W0.8xУсловно-графическое обозначение"),
-                new TextData(new Vector2(40.00, 60.00), 0, "Обозначение, тип, \\Pнаименование механизма"),
+                new TextData(new Vector2(40.00, 60.00), 0, "Обозначение, тип, \\Pнаименование механизма")
             };
 
             foreach (var data in textDatas) {
-                MText entity = DimensionTextByData(data);
+                var entity = DimensionTextByData(data);
                 entity.Layer = text;
                 // add your entities here
                 doc.Entities.Add(entity);
@@ -172,19 +174,17 @@ namespace CADCore {
         }
 
         /// <summary>
-        /// Отрисовка вводного автоматического выключателя щита
+        ///     Отрисовка вводного автоматического выключателя щита
         /// </summary>
         /// <param name="start"> Передаём параметры старт</param>
         /// <param name="circuitBreaker">Даём вводной автоматический выключатель</param>
         /// <param name="electricalPanel">Передаём электрический щит полностью</param>
         /// <returns>возвращает координаты конечной точки</returns>
-        /// 
-        /// TODO При распечатке фидера необходимо откорректировать МТЕкст - для того тчо бы он становился в ячейку. Это надо сделать отдельно так что бы  
-        ///  
+        /// TODO При распечатке фидера необходимо откорректировать МТЕкст - для того тчо бы он становился в ячейку. Это надо сделать отдельно так что бы
         public Vector2 DrawIntroductoryUnit(Vector2 start, BaseCircuitBreaker circuitBreaker = null,
             BaseElectricalPanel electricalPanel = null) {
             double[] delta = GetDelta(start);
-            List<double[]> linesCoordinate = new List<double[]>() {
+            List<double[]> linesCoordinate = new List<double[]> {
                 new[] { 10.10, 234.37, 10.10, 203.00 },
                 new[] { 5.10, 206.78, 10.10, 203.00 },
                 new[] { 3.10, 249.29, 3.10, 206.78 },
@@ -223,14 +223,14 @@ namespace CADCore {
             };
 
             AddLineToDoc(linesCoordinate, delta);
-            List<double[]> circlesCoordinate = new List<double[]>() {
+            List<double[]> circlesCoordinate = new List<double[]> {
                 new[] { 5.10, 248.04, 0.75 },
                 new[] { 3.10, 250.04, 0.75 },
                 new[] { 10.10, 258.04, 0.75 }
             };
             AddCirclesToDoc(circlesCoordinate, delta);
 
-            List<TextData> textCoordinate = new List<TextData>() {
+            List<TextData> textCoordinate = new List<TextData> {
                 new TextData(new Vector2(15.65, 43.68),
                     0,
                     Math.Round(electricalPanel.ShieldActivePower, 2).ToString()),
@@ -249,14 +249,14 @@ namespace CADCore {
         }
 
         /// <summary>
-        /// Распечатать 1 юнит
+        ///     Распечатать 1 юнит
         /// </summary>
         /// <param name="start">Передаём параметры старт</param>
         /// <param name="feeder">Подаём фидер </param>
         /// <returns>возвращает координаты конечной точки</returns>
         public Vector2 DrawUnit(Vector2 start, BaseFeeder feeder = null) {
             double[] delta = GetDelta(start);
-            List<double[]> linesCoordinate = new List<double[]>() {
+            List<double[]> linesCoordinate = new List<double[]> {
                 new[] { 10.80, 241.07, 9.39, 239.66 },
                 new[] { 5.10, 247.29, 5.10, 206.78 },
                 new[] { 7.15, 237.47, 8.15, 235.74 },
@@ -289,11 +289,11 @@ namespace CADCore {
                 new[] { 0.00, 0.00, 30.00, 0.00 },
                 new[] { 8.69, 253.63, 11.50, 254.68 },
                 new[] { 8.69, 252.34, 11.50, 253.39 },
-                new[] { 3.10, 206.78, 10.10, 203.00 },
+                new[] { 3.10, 206.78, 10.10, 203.00 }
             };
 
             AddLineToDoc(linesCoordinate, delta);
-            List<double[]> circlesCoordinate = new List<double[]>() {
+            List<double[]> circlesCoordinate = new List<double[]> {
                 new[] { 10.10, 258.04, 0.75 },
                 new[] { 5.10, 248.04, 0.75 },
                 new[] { 3.10, 250.04, 0.75 },
@@ -301,7 +301,7 @@ namespace CADCore {
             };
             AddCirclesToDoc(circlesCoordinate, delta);
 
-            List<TextData> textCoordinate = new List<TextData>() {
+            List<TextData> textCoordinate = new List<TextData> {
                 new TextData(new Vector2(15.91, 32.97),
                     0,
                     $"{Math.Round(feeder.Consumer.RatedCurrent, 2)}/{Math.Round(feeder.Consumer.StartingCurrent, 2)}"),
@@ -327,7 +327,7 @@ namespace CADCore {
                 new TextData(new Vector2(15.91, 1.42), 0, $"{feeder.Consumer.LocationEquipmentInstallation}"),
                 new TextData(new Vector2(15.93, 233.74), 0, $"\\L{feeder.CircuitBreaker.Dimensions}"),
                 new TextData(new Vector2(16.03, 240.41), 0, $"{feeder.CircuitBreaker.NameOnBus}"),
-                new TextData(new Vector2(16.58, 237.41), 0, $"{feeder.CircuitBreaker.Type}"),
+                new TextData(new Vector2(16.58, 237.41), 0, $"{feeder.CircuitBreaker.Type}")
             };
             AddTextToDoc(textCoordinate, delta);
             SaveFile();
@@ -335,8 +335,8 @@ namespace CADCore {
         }
 
         public Vector2 DrawUnits(Vector2 start, List<BaseFeeder> feeders = null) {
-            Vector2 vector = new Vector2();
-            Vector2 tempStart = start;
+            var vector = new Vector2();
+            var tempStart = start;
 
             foreach (var feeder in feeders) {
                 tempStart = DrawUnit(tempStart, feeder);
@@ -348,8 +348,8 @@ namespace CADCore {
 
         public Vector2 DrawPanel(BaseElectricalPanel panel, string filename) {
             _fileName = filename;
-            Vector2 vector = new Vector2();
-            Vector2 tempStart = new Vector2();
+            var vector = new Vector2();
+            var tempStart = new Vector2();
             tempStart = DrawDiagramFrame(tempStart);
             vector = tempStart;
             var circuitBreaker = panel.BusBars[0].InputSwitch;
@@ -361,15 +361,15 @@ namespace CADCore {
     }
 
     public class TextData {
-        public Vector2 Position { get; }
-
-        public double Rotation { get; }
-        public string Text { get; }
-
         public TextData(Vector2 position, double rotation, string text) {
             Position = position;
             Rotation = rotation;
             Text = text;
         }
+
+        public Vector2 Position { get; }
+
+        public double Rotation { get; }
+        public string Text { get; }
     }
 }

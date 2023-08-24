@@ -5,12 +5,13 @@ using CoreV01.Feeder;
 namespace BillingFillingController.Contrlollers.Consumer {
     public class ConsumerFillController {
         private readonly ConsumerCalculator _calculator;
+
         public ConsumerFillController() {
             _calculator = new ConsumerCalculator();
         }
 
         /// <summary>
-        /// Обработка подаваемого в метод потребителя - меняются поля внутри
+        ///     Обработка подаваемого в метод потребителя - меняются поля внутри
         /// </summary>
         /// <param name="сonsumer">Подаётся объект типа BaseConsumer</param>
         /// <exception cref="FormatException">Пока исключение маленькое по обработке других систем заземления</exception>

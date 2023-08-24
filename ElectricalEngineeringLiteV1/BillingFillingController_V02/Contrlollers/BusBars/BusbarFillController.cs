@@ -13,8 +13,6 @@ namespace BillingFillingController.Contrlollers.BusBars {
         private static BaseBusbar _busbar;
         private readonly double _voltage;
 
-        public RMTCalculation BusbarCalculations { get; set; }
-
         public BusbarFillController(double voltage) {
             _voltage = voltage;
             _consumers = new List<BaseConsumer>();
@@ -23,8 +21,10 @@ namespace BillingFillingController.Contrlollers.BusBars {
             BusbarCalculations = new RMTCalculation();
         }
 
+        public RMTCalculation BusbarCalculations { get; set; }
+
         /// <summary>
-        /// Добавление одного электроприёмника на шину 
+        ///     Добавление одного электроприёмника на шину
         /// </summary>
         /// <param name="newConsumer">Экземпляр класса BaseConsumer</param>
         /// <param name="length">Длина от распред щита до потребителя</param>
@@ -68,7 +68,7 @@ namespace BillingFillingController.Contrlollers.BusBars {
         }
 
         /// <summary>
-        /// добавление коллекциия потребителей на шину 
+        ///     добавление коллекциия потребителей на шину
         /// </summary>
         /// <param name="consumers">Коллекция экземпляров типа BaseConsumer</param>
         public void AddConsumersListOnBus(IEnumerable<BaseConsumer> consumers) {
@@ -80,13 +80,15 @@ namespace BillingFillingController.Contrlollers.BusBars {
         }
 
         /// <summary>
-        /// Получить рассчитанную шину все данные уже прогружены
+        ///     Получить рассчитанную шину все данные уже прогружены
         /// </summary>
         /// <returns>объект класса BaseBusbar</returns>
-        public BaseBusbar GetBusbar() => _busbar;
+        public BaseBusbar GetBusbar() {
+            return _busbar;
+        }
 
         /// <summary>
-        /// Удаление одного электроприёмника с шины 
+        ///     Удаление одного электроприёмника с шины
         /// </summary>
         /// <param name="delConsumer">Экземпляр класса BaseConsumer</param>
         /// <param name="length">Длина от распред щита до потребителя</param>

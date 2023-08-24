@@ -5,9 +5,6 @@ using CoreV01.Feeder;
 
 namespace BillingFillingController.Contrlollers.Feeder {
     public class FeederFillController {
-        public BaseCable Cable { get; set; }
-        public BaseCircuitBreaker CircuitBreaker { get; set; }
-        public BaseConsumer Consumer { get; }
         private readonly ConsumerFillController _consumerFillController;
 
         public FeederFillController(BaseConsumer consumer) {
@@ -17,8 +14,12 @@ namespace BillingFillingController.Contrlollers.Feeder {
             _consumerFillController = new ConsumerFillController();
         }
 
+        public BaseCable Cable { get; set; }
+        public BaseCircuitBreaker CircuitBreaker { get; set; }
+        public BaseConsumer Consumer { get; }
+
         public BaseFeeder GetFeeder(int num, double maxVoltageDrop, double length) {
-            BaseFeeder outputFeeder = new BaseFeeder() {
+            var outputFeeder = new BaseFeeder {
                 Consumer = Consumer
             };
             _consumerFillController.FillConsumerFields(Consumer);

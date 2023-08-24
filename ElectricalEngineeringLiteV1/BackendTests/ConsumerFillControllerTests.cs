@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BillingFillingController.Contrlollers;
 using BillingFillingController.Contrlollers.Consumer;
 using CoreV01.Feeder;
 using NUnit.Framework;
@@ -8,14 +7,14 @@ using NUnit.Framework;
 namespace BackendTests {
     [TestFixture]
     public class ConsumerFillControllerTests {
-        private List<BaseConsumer> _consumers;
-        private ConsumerFillController _consumerFillController;
-
         [SetUp]
         public void Setup() {
             _consumers = new DataBase.DataBase().GetConsumers();
             _consumerFillController = new ConsumerFillController();
         }
+
+        private List<BaseConsumer> _consumers;
+        private ConsumerFillController _consumerFillController;
 
         [Test]
         public void Retrieved_All_Consumers_From_The_Database_Test() {
@@ -34,9 +33,7 @@ namespace BackendTests {
 
             // Act
             List<BaseConsumer> сalculatedСonsumers = _consumers;
-            foreach (var consumer in сalculatedСonsumers) {
-                _consumerFillController.FillConsumerFields(consumer);
-            }
+            foreach (var consumer in сalculatedСonsumers) _consumerFillController.FillConsumerFields(consumer);
 
             // Assert
             Assert.AreEqual(nonСalculatedСonsumers[0].TanPowerFactor, сalculatedСonsumers[0].TanPowerFactor);
@@ -50,9 +47,7 @@ namespace BackendTests {
 
             // Act
 
-            foreach (var consumer in consumers) {
-                _consumerFillController.FillConsumerFields(consumer);
-            }
+            foreach (var consumer in consumers) _consumerFillController.FillConsumerFields(consumer);
 
             double actual = consumers[0].RatedCurrent;
 
@@ -68,9 +63,7 @@ namespace BackendTests {
 
             // Act
 
-            foreach (var consumer in consumers) {
-                _consumerFillController.FillConsumerFields(consumer);
-            }
+            foreach (var consumer in consumers) _consumerFillController.FillConsumerFields(consumer);
 
             consumers[0].Voltage = 230;
             _consumerFillController.FillConsumerFields(consumers[0]);
@@ -87,9 +80,7 @@ namespace BackendTests {
             double expected = 31.414647000023759d;
 
             // Act
-            foreach (var consumer in consumers) {
-                _consumerFillController.FillConsumerFields(consumer);
-            }
+            foreach (var consumer in consumers) _consumerFillController.FillConsumerFields(consumer);
 
             consumers[0].TypeGroundingSystem = "IT";
 

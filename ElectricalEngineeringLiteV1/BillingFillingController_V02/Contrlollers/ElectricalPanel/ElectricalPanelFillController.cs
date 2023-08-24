@@ -17,17 +17,17 @@ namespace BillingFillingController.Contrlollers.ElectricalPanel {
                 BusBars = new List<BaseBusbar>()
             };
             _busbarFillController = new BusbarFillController(voltage);
-            _electricalPanel.BusBars.Add(new BaseBusbar() {
-                SequentialNumber = 1,
+            _electricalPanel.BusBars.Add(new BaseBusbar {
+                SequentialNumber = 1
             });
         }
+
+        public static RMTCalculation PanelCalculations { get; set; }
 
         private void AddConsumerOnPanel(BaseConsumer newConsumer, double length = 5, double maxVoltageDrop = 2.5,
             int busbarNum = 0) {
             string ConvertToRoman(int number) {
-                if (number < 0 || number > 3) {
-                    throw new ArgumentOutOfRangeException("Number must be between 1 and 4");
-                }
+                if (number < 0 || number > 3) throw new ArgumentOutOfRangeException("Number must be between 1 and 4");
 
                 switch (number) {
                     case 0:
@@ -50,23 +50,19 @@ namespace BillingFillingController.Contrlollers.ElectricalPanel {
             _electricalPanel.BusBars[busbarNum].OwnerId = _electricalPanel.SelfId;
             PanelCalculations = new RMTCalculation();
             List<BaseConsumer> localConsumers = new List<BaseConsumer>();
-            foreach (var busbar in _electricalPanel.BusBars) {
+            foreach (var busbar in _electricalPanel.BusBars)
                 localConsumers.AddRange(busbar.Feeders.Select(feeder => feeder.Consumer));
-            }
 
             PanelCalculations.GetInstallCapacity(localConsumers, _electricalPanel.Voltage);
         }
 
         private void GetCalculationBusbar(List<BaseConsumer> consumers,
             int busbarNum) {
-            if (consumers.Count() == 1) {
+            if (consumers.Count() == 1)
                 AddConsumerOnPanel(consumers[0], busbarNum: busbarNum);
-            }
-            else {
-                foreach (var consumer in consumers) {
+            else
+                foreach (var consumer in consumers)
                     AddConsumerOnPanel(consumer, busbarNum: busbarNum);
-                }
-            }
         }
 
         private static void CalculatePanelFields() {
@@ -143,8 +139,6 @@ namespace BillingFillingController.Contrlollers.ElectricalPanel {
             return PanelCalculations.DesignBusbarCurrent;
         }
 
-        public static RMTCalculation PanelCalculations { get; set; }
-
 
         public void AddOnPanel(List<BaseConsumer> consumers, int busbarNum = 0) {
             switch (busbarNum) {
@@ -162,6 +156,8 @@ namespace BillingFillingController.Contrlollers.ElectricalPanel {
             return _electricalPanel;
         }
 
-        public BusbarFillController GetBusbarFillController() => _busbarFillController;
+        public BusbarFillController GetBusbarFillController() {
+            return _busbarFillController;
+        }
     }
 }

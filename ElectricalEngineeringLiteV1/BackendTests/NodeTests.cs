@@ -7,13 +7,14 @@ using NUnit.Framework;
 namespace BackendTests {
     [TestFixture]
     public class NodeTests {
-        private List<BaseConsumer> _consumers;
-        private ElectricalPanelFillController _electricalPanelFillController;
         // https://help.autodesk.com/view/OARX/2021/ENU/?guid=GUID-EA9CDD11-19D1-4EBC-9F56-979ACF679E3C
         [SetUp]
         public void Setup() {
             _electricalPanelFillController = new ElectricalPanelFillController();
         }
+
+        private List<BaseConsumer> _consumers;
+        private ElectricalPanelFillController _electricalPanelFillController;
 
         [Test]
         public void ElectricalPanelFillController_Test() {
@@ -23,7 +24,7 @@ namespace BackendTests {
             });
 
             // Act
-            Node node = new Node(_electricalPanelFillController.GetPanel());
+            var node = new Node(_electricalPanelFillController.GetPanel());
 
             // Assert
             Assert.NotNull(node);

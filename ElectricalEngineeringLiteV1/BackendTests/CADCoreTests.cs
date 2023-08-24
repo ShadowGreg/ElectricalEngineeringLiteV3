@@ -8,12 +8,12 @@ using NUnit.Framework;
 namespace BackendTests {
     [TestFixture]
     public class CADCoreTests {
-        private DXFController _dxfController;
-
         [SetUp]
         public void Setup() {
             _dxfController = new DXFController();
         }
+
+        private DXFController _dxfController;
 
         [Test]
         public void ElectricalPanelFillController_Test() {
@@ -29,11 +29,11 @@ namespace BackendTests {
         [Test]
         public void DrawIntroductoryUnit_Test() {
             // Arrange
-            ElectricalPanelFillController electricalPanelFillController = new ElectricalPanelFillController();
-            BaseConsumer consumer = new BaseConsumer();
+            var electricalPanelFillController = new ElectricalPanelFillController();
+            var consumer = new BaseConsumer();
 
             // Act
-            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>() { consumer });
+            electricalPanelFillController.AddOnPanel(new List<BaseConsumer> { consumer });
             var circuitBreaker = electricalPanelFillController.GetPanel().BusBars[0].InputSwitch;
             var electricalPanel = electricalPanelFillController.GetPanel();
             _dxfController.DrawIntroductoryUnit(new Vector2(0, 0), circuitBreaker, electricalPanel);
@@ -44,11 +44,11 @@ namespace BackendTests {
         [Test]
         public void DrawIntroductoryUnit_With_Distance_Test() {
             // Arrange
-            ElectricalPanelFillController electricalPanelFillController = new ElectricalPanelFillController();
-            BaseConsumer consumer = new BaseConsumer();
+            var electricalPanelFillController = new ElectricalPanelFillController();
+            var consumer = new BaseConsumer();
 
             // Act
-            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>() { consumer });
+            electricalPanelFillController.AddOnPanel(new List<BaseConsumer> { consumer });
             var circuitBreaker = electricalPanelFillController.GetPanel().BusBars[0].InputSwitch;
             var electricalPanel = electricalPanelFillController.GetPanel();
             _dxfController.DrawIntroductoryUnit(new Vector2(150, -300), circuitBreaker, electricalPanel);
@@ -59,12 +59,12 @@ namespace BackendTests {
         [Test]
         public void DrawUnit_Test() {
             // Arrange
-            ElectricalPanelFillController electricalPanelFillController = new ElectricalPanelFillController();
-            BaseConsumer consumer = new BaseConsumer();
+            var electricalPanelFillController = new ElectricalPanelFillController();
+            var consumer = new BaseConsumer();
 
             // Act
-            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>()
-                { consumer, consumer, consumer, consumer, consumer, consumer, consumer, });
+            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>
+                { consumer, consumer, consumer, consumer, consumer, consumer, consumer });
             var feeder = electricalPanelFillController.GetPanel().BusBars[0].Feeders[3];
 
             _dxfController.DrawUnit(new Vector2(150, -300), feeder);
@@ -75,13 +75,13 @@ namespace BackendTests {
         [Test]
         public void DrawUnits_Test() {
             // Arrange
-            ElectricalPanelFillController electricalPanelFillController = new ElectricalPanelFillController();
-            BaseConsumer consumer = new BaseConsumer();
+            var electricalPanelFillController = new ElectricalPanelFillController();
+            var consumer = new BaseConsumer();
 
             // Act
-            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>()
-                { consumer, consumer, consumer, consumer, consumer, consumer, consumer, });
-            var feeders = electricalPanelFillController.GetPanel().BusBars[0].Feeders;
+            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>
+                { consumer, consumer, consumer, consumer, consumer, consumer, consumer });
+            List<BaseFeeder> feeders = electricalPanelFillController.GetPanel().BusBars[0].Feeders;
 
             _dxfController.DrawUnits(new Vector2(150, -300), feeders);
 
@@ -91,12 +91,12 @@ namespace BackendTests {
         [Test]
         public void DrawPanel_Test() {
             // Arrange
-            ElectricalPanelFillController electricalPanelFillController = new ElectricalPanelFillController();
-            BaseConsumer consumer = new BaseConsumer();
+            var electricalPanelFillController = new ElectricalPanelFillController();
+            var consumer = new BaseConsumer();
 
             // Act
-            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>()
-                { consumer, consumer, consumer, consumer, consumer, consumer, consumer, });
+            electricalPanelFillController.AddOnPanel(new List<BaseConsumer>
+                { consumer, consumer, consumer, consumer, consumer, consumer, consumer });
             var panel = electricalPanelFillController.GetPanel();
 
             _dxfController.DrawPanel(panel, "sample.dxf");
