@@ -11,6 +11,7 @@ namespace BackendTests {
     [TestFixture]
     public class DbTests {
         private ElectricalPanelFillController _electricalPanelFillController;
+        const string databaseFile = "../../database.sav";
 
         [SetUp]
         public void Setup() {
@@ -32,31 +33,29 @@ namespace BackendTests {
         [Test]
         public void Controller_Test_For_A_Specific_Value() {
             // Arrange
-            string databaseFile = "../../database.sav";
             var sqliteHelper = new SqLiteHelper(databaseFile);
 
 
             // Act
             sqliteHelper.DeleteTable<BaseConsumer>();
             sqliteHelper.CreateDatabase<BaseConsumer>();
-            
+
             sqliteHelper.DeleteTable<BaseCable>();
             sqliteHelper.CreateDatabase<BaseCable>();
-            
+
             sqliteHelper.DeleteTable<BaseCircuitBreaker>();
             sqliteHelper.CreateDatabase<BaseCircuitBreaker>();
-            
+
             sqliteHelper.DeleteTable<BaseFeeder>();
             sqliteHelper.CreateDatabase<BaseFeeder>();
-            
+
             sqliteHelper.DeleteTable<BaseBusbar>();
             sqliteHelper.CreateDatabase<BaseBusbar>();
-            
+
             sqliteHelper.DeleteTable<BaseElectricalPanel>();
             sqliteHelper.CreateDatabase<BaseElectricalPanel>();
 
             // Assert
-            // Assert.NotNull(actualPanel);
         }
     }
 }

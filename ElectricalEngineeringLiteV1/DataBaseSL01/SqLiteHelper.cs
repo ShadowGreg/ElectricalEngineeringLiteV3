@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Reflection;
 using CoreV01.Feeder;
 using CoreV01.Properties;
 
@@ -23,7 +24,7 @@ namespace DataBaseSL01 {
             using (var connection = new SQLiteConnection(_connectionString)) {
                 connection.Open();
 
-                var createTableQuery = GetCreateTableQuery<T>();
+                string createTableQuery = GetCreateTableQuery<T>();
 
                 using (var command = new SQLiteCommand(createTableQuery, connection)) {
                     command.ExecuteNonQuery();
@@ -35,8 +36,8 @@ namespace DataBaseSL01 {
             using (var connection = new SQLiteConnection(_connectionString)) {
                 connection.Open();
 
-                var tableName = typeof(T).Name;
-                var deleteTableQuery = $"DROP TABLE IF EXISTS {tableName}";
+                string tableName = typeof(T).Name;
+                string deleteTableQuery = $"DROP TABLE IF EXISTS {tableName}";
 
                 using (var command = new SQLiteCommand(deleteTableQuery, connection)) {
                     command.ExecuteNonQuery();
@@ -45,39 +46,50 @@ namespace DataBaseSL01 {
         }
 
         private string GetCreateTableQuery<T>() {
-            var tableName = typeof(T).Name;
-            var properties = typeof(T).GetProperties();
-            var createTableQuery = $"CREATE TABLE IF NOT EXISTS {tableName} (";
+            string tableName = typeof(T).Name;
+            PropertyInfo[] properties = typeof(T).GetProperties();
+            string createTableQuery = $"CREATE TABLE IF NOT EXISTS {tableName} (";
 
-            foreach (var property in properties)
-            {
-                var columnName = property.Name;
-                var columnType = GetColumnType(property.PropertyType);
-                createTableQuery += $"{columnName} {columnType}, ";
+            foreach (var property in properties) {
+                string columnName = property.Name;
+                string columnType = GetColumnType(property.PropertyType);
+                switch (columnName) {
+                    case "SelfId":
+                        // Add the SelfId column as the primary key
+                        createTableQuery += $"{columnName} {columnType} PRIMARY KEY, ";
+                        break;
+                    case "OwnerId":
+                        // Add the OwnerId column as the foreign key
+                        createTableQuery += $"{columnName} {columnType} REFERENCES {tableName}(Id), ";
+                        break;
+                    default:
+                        createTableQuery += $"{columnName} {columnType}, ";
+                        break;
+                }
             }
 
             createTableQuery = createTableQuery.TrimEnd(',', ' ');
 
             // Check if there is a field of type List<BaseFeeder>
             if (typeof(T).GetProperty("Feeders") != null &&
-                typeof(T).GetProperty("Feeders").PropertyType == typeof(List<BaseFeeder>))
-            {
+                typeof(T).GetProperty("Feeders").PropertyType == typeof(List<BaseFeeder>)) {
                 createTableQuery +=
                     $", FeedersOwnerId INTEGER, FOREIGN KEY(FeedersOwnerId) REFERENCES {tableName}(SelfId)";
 
                 // Create the Feeders table
-                createTableQuery += $"); CREATE TABLE IF NOT EXISTS Feeders (Id INTEGER PRIMARY KEY AUTOINCREMENT, FeedersKey INTEGER, FOREIGN KEY(FeedersKey) REFERENCES {tableName}(SelfId)";
+                createTableQuery +=
+                    $"); CREATE TABLE IF NOT EXISTS Feeders (Id INTEGER PRIMARY KEY AUTOINCREMENT, FeedersKey INTEGER, FOREIGN KEY(FeedersKey) REFERENCES {tableName}(SelfId)";
             }
 
             // Check if there is a field of type List<BaseBusbar>
             if (typeof(T).GetProperty("BusBars") != null &&
-                typeof(T).GetProperty("BusBars").PropertyType == typeof(List<BaseBusbar>))
-            {
+                typeof(T).GetProperty("BusBars").PropertyType == typeof(List<BaseBusbar>)) {
                 createTableQuery +=
                     $", BusBarsOwnerId INTEGER, FOREIGN KEY(BusBarsOwnerId) REFERENCES {tableName}(SelfId)";
 
                 // Create the BusBars table
-                createTableQuery += $"); CREATE TABLE IF NOT EXISTS BusBars (Id INTEGER PRIMARY KEY AUTOINCREMENT, BusBarsKey INTEGER, FOREIGN KEY(BusBarsKey) REFERENCES {tableName}(SelfId)";
+                createTableQuery +=
+                    $"); CREATE TABLE IF NOT EXISTS BusBars (Id INTEGER PRIMARY KEY AUTOINCREMENT, BusBarsKey INTEGER, FOREIGN KEY(BusBarsKey) REFERENCES {tableName}(SelfId)";
             }
 
             createTableQuery += ")";

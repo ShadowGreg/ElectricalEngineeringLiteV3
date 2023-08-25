@@ -25,7 +25,7 @@ namespace CoreV01.Properties {
         /// TODO нужно ли это потому что в последующем включить все элементы в фидер
         public int SequentialNumber { get; set; } = 0;
 
-        protected string GetId() {
+        private static string GetId() {
             return Guid.NewGuid().ToString("N");
         }
     }
