@@ -142,6 +142,7 @@
         <Compile Include="CableFillControllerTest.cs" />
         <Compile Include="CADCoreTests.cs" />
         <Compile Include="CalculationsTests.cs" />
+        <Compile Include="ConsumerControllerTests.cs" />
         <Compile Include="ConsumerFillControllerTests.cs" />
         <Compile Include="DbTests.cs" />
         <Compile Include="ElectricalPanelFillControllerTests.cs" />

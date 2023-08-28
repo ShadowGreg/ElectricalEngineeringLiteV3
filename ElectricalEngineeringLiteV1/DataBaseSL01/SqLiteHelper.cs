@@ -20,6 +20,8 @@ namespace DataBaseSL01 {
             }
         }
 
+        public string GetConnectionString() => _connectionString;
+
         public void CreateDatabase<T>() {
             using (var connection = new SQLiteConnection(_connectionString)) {
                 connection.Open();
