@@ -1,8 +1,7 @@
-﻿using System;
-using BillingFillingController.Calculators;
+﻿using ElectricalEngineering.Domain.Calculators;
 using ElectricalEngineering.Domain.Feeder;
 
-namespace BillingFillingController.Contrlollers.Consumer {
+namespace ElectricalEngineering.Domain.Contrlollers.Consumer {
     public class ConsumerFillController {
         private readonly ConsumerCalculator _calculator;
 

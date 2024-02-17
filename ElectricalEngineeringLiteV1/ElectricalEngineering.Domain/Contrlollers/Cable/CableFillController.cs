@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using ElectricalEngineering.Domain.Feeder;
 
-namespace BillingFillingController.Contrlollers.Cable {
+namespace ElectricalEngineering.Domain.Contrlollers.Cable {
     public class CableData {
         private readonly Dictionary<double, double> _aluminumCrossSectionCurrent = new Dictionary<double, double> {
             { 2.5, 21 },

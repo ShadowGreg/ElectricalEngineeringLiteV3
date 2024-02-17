@@ -1,20 +1,15 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataBase {
-    public sealed class ApplicationDbContext: DbContext {
+namespace ElectricalEngineering.Data {
+    public sealed class CounsumerDbContext : DbContext {
         public DbSet<BDConsumer> Consumers { get; set; }
 
-        // public ApplicationDbContext() {
-        //     Database.EnsureCreated();
-        // }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlite("Data Source = identifier.db");
-            
-
+        public CounsumerDbContext(DbContextOptions<CounsumerDbContext> options) 
+            : base(options) 
+        {
         }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<BDConsumer>().HasData(GetEmployees());

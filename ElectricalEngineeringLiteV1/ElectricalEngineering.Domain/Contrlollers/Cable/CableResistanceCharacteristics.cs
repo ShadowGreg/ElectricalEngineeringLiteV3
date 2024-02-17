@@ -1,4 +1,4 @@
-namespace BillingFillingController.Contrlollers.Cable {
+namespace ElectricalEngineering.Domain.Contrlollers.Cable {
     public class CableResistanceCharacteristics {
         /// <summary>
         ///     Активное сопротивление Ro ом/км

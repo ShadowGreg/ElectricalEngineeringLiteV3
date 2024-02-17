@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
 
-namespace DataBase {
+namespace ElectricalEngineering.Data {
     public class DataBase: IReadWrite {
         private static List<BaseConsumer> _consumers;
 

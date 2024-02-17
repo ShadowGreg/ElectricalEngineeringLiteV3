@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BillingFillingController.Calculators;
-using BillingFillingController.Contrlollers.BusBars;
+﻿using ElectricalEngineering.Domain.Calculators;
+using ElectricalEngineering.Domain.Contrlollers.BusBars;
 using ElectricalEngineering.Domain.Feeder;
-using ElectricalEngineering.Domain;
 
-namespace BillingFillingController.Contrlollers.ElectricalPanel {
+namespace ElectricalEngineering.Domain.Contrlollers.ElectricalPanel {
     public class ElectricalPanelFillController {
         private static BaseElectricalPanel _electricalPanel;
         private static BusbarFillController _busbarFillController;

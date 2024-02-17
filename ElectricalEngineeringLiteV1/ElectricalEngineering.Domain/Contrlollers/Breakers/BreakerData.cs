@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using ElectricalEngineering.Domain.Feeder;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
 
-namespace BillingFillingController.Contrlollers.Breakers {
+namespace ElectricalEngineering.Domain.Contrlollers.Breakers {
     public class BreakerData {
         public readonly Dictionary<double, BaseCircuitBreaker> _singlePolesBreakerData =
             new Dictionary<double, BaseCircuitBreaker> {

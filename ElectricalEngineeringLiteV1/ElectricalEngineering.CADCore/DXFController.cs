@@ -5,7 +5,7 @@ using netDxf.Entities;
 using netDxf.Header;
 using netDxf.Tables;
 
-namespace CADCore {
+namespace ElectricalEngineering.CADCore {
     public class DXFController {
         // your DXF file name
         private string _fileName;
@@ -42,6 +42,7 @@ namespace CADCore {
 
         private void SaveFile() {
             // save to file
+            //Task.Factory.StartNew(() => doc.Save(_fileName), TaskCreationOptions.LongRunning);
             doc.Save(_fileName);
 
             // this check is optional but recommended before loading a DXF file

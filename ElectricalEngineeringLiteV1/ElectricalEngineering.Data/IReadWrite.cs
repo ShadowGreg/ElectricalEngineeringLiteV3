@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
 
-namespace DataBase {
+namespace ElectricalEngineering.Data {
+    //а-ля паттерн репозитория
     public interface IReadWrite {
         List<BaseConsumer> GetConsumers();
     }

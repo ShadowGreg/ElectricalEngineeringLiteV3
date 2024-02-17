@@ -1,0 +1,36 @@
+﻿@page "/"
+@using ElectricalEngineering.Data
+@using ElectricalEngineering.Domain.Calculators
+@using Microsoft.EntityFrameworkCore
+
+@inject CounsumerDbContext DbContext
+@inject ConsumerCalculator ConsumerCalculator
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+@if (_consumers is not null)
+{
+    @foreach (var consumer in _consumers)
+    {
+        <div>@consumer.FirstName</div>
+        <div>@consumer.LastName</div>
+    }
+}
+else
+{
+    <div>Загрузка потребителей...</div>
+}
+
+@code {
+    private List<BDConsumer>? _consumers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await DbContext.Database.EnsureCreatedAsync();
+        _consumers = await DbContext.Consumers.ToListAsync();
+    }
+
+}

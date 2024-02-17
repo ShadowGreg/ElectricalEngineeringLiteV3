@@ -1,9 +1,9 @@
-﻿using BillingFillingController.Contrlollers.Breakers;
-using BillingFillingController.Contrlollers.Cable;
-using BillingFillingController.Contrlollers.Consumer;
+﻿using ElectricalEngineering.Domain.Contrlollers.Breakers;
+using ElectricalEngineering.Domain.Contrlollers.Cable;
+using ElectricalEngineering.Domain.Contrlollers.Consumer;
 using ElectricalEngineering.Domain.Feeder;
 
-namespace BillingFillingController.Contrlollers.Feeder {
+namespace ElectricalEngineering.Domain.Contrlollers.Feeder {
     public class FeederFillController {
         private readonly ConsumerFillController _consumerFillController;
 

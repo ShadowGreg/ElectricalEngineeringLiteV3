@@ -1,7 +1,6 @@
-using System;
 using ElectricalEngineering.Domain.Feeder;
 
-namespace BillingFillingController.Calculators {
+namespace ElectricalEngineering.Domain.Calculators {
     public class ConsumerCalculator {
         public void Fill(BaseConsumer consumer) {
             if (consumer.TypeGroundingSystem.Contains("TN")) { }

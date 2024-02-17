@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace BillingFillingController.Calculators {
+﻿namespace ElectricalEngineering.Domain.Calculators {
     internal class DesignLoadFactorData {
         private readonly Dictionary<int, Dictionary<double, double>> _data =
             new Dictionary<int, Dictionary<double, double>> {

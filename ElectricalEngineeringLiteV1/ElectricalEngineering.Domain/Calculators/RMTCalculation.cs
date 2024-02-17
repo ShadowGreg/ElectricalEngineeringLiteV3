@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using ElectricalEngineering.Domain.Feeder;
 
-namespace BillingFillingController.Calculators {
+namespace ElectricalEngineering.Domain.Calculators {
     public class RMTCalculation {
         private List<BaseConsumer> _consumers;
 

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using BillingFillingController.Calculators;
-using BillingFillingController.Contrlollers.Breakers;
-using BillingFillingController.Contrlollers.Feeder;
+﻿using ElectricalEngineering.Domain.Calculators;
+using ElectricalEngineering.Domain.Contrlollers.Breakers;
+using ElectricalEngineering.Domain.Contrlollers.Feeder;
 using ElectricalEngineering.Domain.Feeder;
-using ElectricalEngineering.Domain;
 
-namespace BillingFillingController.Contrlollers.BusBars {
+namespace ElectricalEngineering.Domain.Contrlollers.BusBars {
     public class BusbarFillController {
-        private static List<BaseConsumer> _consumers;
-        private static List<BaseFeeder> _feeders;
-        private static BaseBusbar _busbar;
+        private List<BaseConsumer> _consumers;
+        private List<BaseFeeder> _feeders;
+        private BaseBusbar _busbar;
         private readonly double _voltage;
 
         public BusbarFillController(double voltage) {
