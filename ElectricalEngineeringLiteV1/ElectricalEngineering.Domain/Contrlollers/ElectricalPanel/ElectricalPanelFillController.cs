@@ -4,8 +4,8 @@ using ElectricalEngineering.Domain.Feeder;
 
 namespace ElectricalEngineering.Domain.Contrlollers.ElectricalPanel {
     public class ElectricalPanelFillController {
-        private static BaseElectricalPanel _electricalPanel;
-        private static BusbarFillController _busbarFillController;
+        private BaseElectricalPanel _electricalPanel;
+        private  BusbarFillController _busbarFillController;
 
         public ElectricalPanelFillController(double voltage = 400, string name = "Новый щит ЩР1") {
             _electricalPanel = new BaseElectricalPanel {
@@ -61,7 +61,7 @@ namespace ElectricalEngineering.Domain.Contrlollers.ElectricalPanel {
                     AddConsumerOnPanel(consumer, busbarNum: busbarNum);
         }
 
-        private static void CalculatePanelFields() {
+        private void CalculatePanelFields() {
             _electricalPanel.NumberOfElectricalReceiversInstalledInTheSwitchboard = GetNumberOfReceivers();
             _electricalPanel.InstalledElectricalPowerOfTheSwitchboard = GetInstalledPowerOfSwitchboard();
             _electricalPanel.ShieldUtilizationFactor = GetShieldUtilizationFactor();
@@ -78,60 +78,60 @@ namespace ElectricalEngineering.Domain.Contrlollers.ElectricalPanel {
             _electricalPanel.RatedCurrent = GetRatedCurrent();
         }
 
-        private static double GetNumberOfReceivers() {
+        private  double GetNumberOfReceivers() {
             return _electricalPanel.BusBars.Sum(busbar => busbar.Feeders.Count());
         }
 
-        private static double GetInstalledPowerOfSwitchboard() {
+        private  double GetInstalledPowerOfSwitchboard() {
             return _electricalPanel.BusBars.Sum(busBar =>
                 busBar.Feeders.Sum(feeder =>
                     feeder.Consumer.RatedElectricPower * feeder.Consumer.NumberElectricalReceivers));
         }
 
-        private static double GetShieldUtilizationFactor() {
+        private  double GetShieldUtilizationFactor() {
             double coefficient = 0;
             coefficient = _electricalPanel.BusBars.Sum(busBar => busBar.InstalledCapacity)
                           / _electricalPanel.BusBars.Sum(busBar => busBar.RatedCapacity);
             return coefficient;
         }
 
-        private static double GetShieldPowerFactor() {
+        private  double GetShieldPowerFactor() {
             return PanelCalculations.BusPowerFactor;
         }
 
-        private static double GetAverageRatedActivePower() {
+        private  double GetAverageRatedActivePower() {
             return PanelCalculations.ActiveAverageDesignPower;
         }
 
-        private static double GetAverageDesignReactivePower() {
+        private  double GetAverageDesignReactivePower() {
             return PanelCalculations.ReactiveAverageRatedPower;
         }
 
-        private static double GetSquareOfTheRatedPowerOfThePanel() {
+        private  double GetSquareOfTheRatedPowerOfThePanel() {
             return PanelCalculations.SquareOfRatedPower;
         }
 
-        private static double GetEquivalentNumberOfElectricalReceivers() {
+        private  double GetEquivalentNumberOfElectricalReceivers() {
             return PanelCalculations.EquivalentNumberOfElectricalReceivers;
         }
 
-        private static double GetDesignLoadFactor() {
+        private  double GetDesignLoadFactor() {
             return PanelCalculations.DesignLoadFactor;
         }
 
-        private static double GetShieldActivePower() {
+        private  double GetShieldActivePower() {
             return PanelCalculations.ActiveRatedPowerOfTheBus;
         }
 
-        private static double GetReactivePowerOfThePanel() {
+        private  double GetReactivePowerOfThePanel() {
             return PanelCalculations.ReactiveRatedPowerOfTheBus;
         }
 
-        private static double GetTotalPowerPanel() {
+        private  double GetTotalPowerPanel() {
             return PanelCalculations.TotalDesignPowerOfTheBus;
         }
 
-        private static double GetRatedCurrent() {
+        private  double GetRatedCurrent() {
             return PanelCalculations.DesignBusbarCurrent;
         }
 
