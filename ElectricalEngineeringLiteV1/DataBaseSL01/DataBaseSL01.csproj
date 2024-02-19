@@ -55,7 +55,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="ReadWrite\Write\ConsumerController.cs" />
+        <Compile Include="ReadWrite\ConsumerController.cs" />
+        <Compile Include="ReadWrite\DataController.cs" />
         <Compile Include="SqLiteHelper.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="WriteController.cs" />

@@ -2,7 +2,7 @@
 using System.Data.SQLite;
 using CoreV01.Feeder;
 
-namespace DataBaseSL01.ReadWrite.Write {
+namespace DataBaseSL01.ReadWrite {
     public class ConsumerController {
         private readonly SqLiteHelper _dbHelper;
         private readonly string _databaseFile;

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.IO;
-using DataBaseSL01.ReadWrite.Write;
 using CoreV01.Feeder;
+using DataBaseSL01.ReadWrite;
 
 namespace DataBaseSL01.Tests {
     [TestFixture]
