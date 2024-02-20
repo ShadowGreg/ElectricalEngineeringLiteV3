@@ -1,11 +1,12 @@
-﻿using ElectricalEngineering.Domain.Contrlollers.Cable;
-using ElectricalEngineering.Domain.Contrlollers.Consumer;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Contrlollers.Cable;
+using ElectricalEngineering.DomainServices.Contrlollers.Consumer;
+using ElectricalEngineering.DomainServices.StandardData.Cable;
 
 namespace BackendTests;
 
 [TestFixture]
-public class CableFillControllerTest {
+public class CableFillDataTest {
     [SetUp]
     public void Setup() {
         _consumerFillController = new ConsumerFillController();
@@ -27,7 +28,7 @@ public class CableFillControllerTest {
 
     private BaseConsumer _consumer;
     private ConsumerFillController _consumerFillController;
-    private CableFillController _cableFillController;
+    private CableFillData _cableFillData;
     private BaseCable expectedBaseCable;
 
 
@@ -48,9 +49,9 @@ public class CableFillControllerTest {
 
         // Act
         const double cableLength = 120;
-        _cableFillController = new CableFillController(_consumer, cableLength);
+        _cableFillData = new CableFillData(_consumer, cableLength);
         const double dropVoltage = 2.3;
-        var actualCable = _cableFillController.GetCableValue(dropVoltage);
+        var actualCable = _cableFillData.GetCableValue(dropVoltage);
 
         // Assert
         Assert.NotNull(actualCable);
@@ -89,9 +90,9 @@ public class CableFillControllerTest {
 
         // Act
         const double cableLength = 120;
-        _cableFillController = new CableFillController(_consumer, cableLength);
+        _cableFillData = new CableFillData(_consumer, cableLength);
         const double dropVoltage = 2.3;
-        var actualCable = _cableFillController.GetCableValue(dropVoltage);
+        var actualCable = _cableFillData.GetCableValue(dropVoltage);
 
         // Assert
         Assert.AreEqual(expectedCable, actualCable);
@@ -130,9 +131,9 @@ public class CableFillControllerTest {
 
         // Act
         const double cableLength = 120;
-        _cableFillController = new CableFillController(_consumer, cableLength);
+        _cableFillData = new CableFillData(_consumer, cableLength);
         const double dropVoltage = 2.3;
-        var actualCable = _cableFillController.GetCableValue(dropVoltage);
+        var actualCable = _cableFillData.GetCableValue(dropVoltage);
 
         // Assert
         Assert.AreEqual(expectedCable, actualCable);

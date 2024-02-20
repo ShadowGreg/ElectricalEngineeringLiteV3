@@ -1,6 +1,6 @@
 ﻿using ElectricalEngineering.Domain.Feeder;
 
-namespace ElectricalEngineering.Domain.Contrlollers.Breakers {
+namespace ElectricalEngineering.DomainServices.StandardData.Breakers {
     public class BreakerData {
         public readonly Dictionary<double, BaseCircuitBreaker> _singlePolesBreakerData =
             new Dictionary<double, BaseCircuitBreaker> {

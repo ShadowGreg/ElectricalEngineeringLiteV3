@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ElectricalEngineering.Data\ElectricalEngineering.Data.csproj" />
+      <ProjectReference Include="..\ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj" />
     </ItemGroup>
 
 </Project>

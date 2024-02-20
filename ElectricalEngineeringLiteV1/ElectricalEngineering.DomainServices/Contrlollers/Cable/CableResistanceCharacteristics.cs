@@ -1,4 +1,4 @@
-namespace ElectricalEngineering.Domain.Contrlollers.Cable {
+namespace ElectricalEngineering.DomainServices.Contrlollers.Cable {
     public class CableResistanceCharacteristics {
         /// <summary>
         ///     Активное сопротивление Ro ом/км

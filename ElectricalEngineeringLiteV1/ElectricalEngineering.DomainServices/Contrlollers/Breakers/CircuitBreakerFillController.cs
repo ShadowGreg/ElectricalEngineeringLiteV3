@@ -1,7 +1,8 @@
 ﻿using System.Data;
 using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.StandardData.Breakers;
 
-namespace ElectricalEngineering.Domain.Contrlollers.Breakers {
+namespace ElectricalEngineering.DomainServices.Contrlollers.Breakers {
     public class CircuitBreakerFillController {
         private readonly BreakerData _breakerData = new BreakerData();
 

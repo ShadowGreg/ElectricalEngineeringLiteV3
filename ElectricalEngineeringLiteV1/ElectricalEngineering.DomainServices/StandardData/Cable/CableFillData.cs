@@ -1,7 +1,8 @@
 ﻿using System.Data;
 using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Contrlollers.Cable;
 
-namespace ElectricalEngineering.Domain.Contrlollers.Cable {
+namespace ElectricalEngineering.DomainServices.StandardData.Cable {
     public class CableData {
         private readonly Dictionary<double, double> _aluminumCrossSectionCurrent = new Dictionary<double, double> {
             { 2.5, 21 },
@@ -165,13 +166,13 @@ namespace ElectricalEngineering.Domain.Contrlollers.Cable {
             };
     }
 
-    public class CableFillController {
+    public class CableFillData {
         private readonly double _cableLength;
         private readonly BaseConsumer _consumer;
         private BaseCable _cable;
         private double _maxCableCurrent;
 
-        public CableFillController(BaseConsumer consumer, double cableLength) {
+        public CableFillData(BaseConsumer consumer, double cableLength) {
             _consumer = consumer;
             _cableLength = cableLength;
             _cable = new BaseCable();

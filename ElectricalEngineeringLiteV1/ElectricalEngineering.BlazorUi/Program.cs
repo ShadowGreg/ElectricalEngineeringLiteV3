@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ElectricalEngineering.BlazorUi.Components;
 using ElectricalEngineering.BlazorUi.Components.Account;
 using ElectricalEngineering.BlazorUi.Data;
-using ElectricalEngineering.Domain.Calculators;
+using ElectricalEngineering.DomainServices.Calculators;
 
 var builder = WebApplication.CreateBuilder(args);
 

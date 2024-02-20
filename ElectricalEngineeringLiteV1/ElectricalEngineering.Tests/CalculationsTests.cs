@@ -1,6 +1,6 @@
-﻿using ElectricalEngineering.Domain.Contrlollers.Consumer;
-using ElectricalEngineering.Domain.Contrlollers.ElectricalPanel;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Contrlollers.Consumer;
+using ElectricalEngineering.DomainServices.Contrlollers.ElectricalPanel;
 
 namespace BackendTests.Properties;
 

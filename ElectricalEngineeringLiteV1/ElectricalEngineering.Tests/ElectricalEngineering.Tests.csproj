@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ElectricalEngineering.CADCore\ElectricalEngineering.CADCore.csproj" />
+      <ProjectReference Include="..\ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj" />
       <ProjectReference Include="..\ElectricalEngineering.Domain\ElectricalEngineering.Domain.csproj" />
     </ItemGroup>
 

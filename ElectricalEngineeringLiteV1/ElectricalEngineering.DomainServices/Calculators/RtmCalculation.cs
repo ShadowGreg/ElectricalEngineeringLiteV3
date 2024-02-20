@@ -1,11 +1,13 @@
+using System.Diagnostics;
 using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.StandardData.Calculators;
 
-namespace ElectricalEngineering.Domain.Calculators {
-    public class RMTCalculation {
-        private List<BaseConsumer> _consumers;
+namespace ElectricalEngineering.DomainServices.Calculators {
+    public class RtmCalculation {
+        private List<BaseConsumer>? _consumers;
 
         /// <summary>
-        ///     Физическое число электроприёмников
+        ///     Физическое число электро приёмников
         /// </summary>
         public int NumberOfReceivers { get; set; }
 
@@ -83,10 +85,10 @@ namespace ElectricalEngineering.Domain.Calculators {
             _consumers = consumers;
             NumberOfReceivers = consumers.Count;
             RatedPower = 0;
-            foreach (var VARIABLE in consumers) RatedPower += VARIABLE.RatedElectricPower;
+            foreach (var item in consumers) RatedPower += item.RatedElectricPower;
 
             RatedPowerOfIdenticalElectricalReceivers = 0;
-            foreach (var VARIABLE in consumers) RatedPowerOfIdenticalElectricalReceivers += VARIABLE.RatedElectricPower;
+            foreach (var item in consumers) RatedPowerOfIdenticalElectricalReceivers += item.RatedElectricPower;
 
             BusUtilizationFactor = consumers.Sum(consumer => consumer.UsageFactor * consumer.RatedElectricPower) /
                                    consumers.Sum(consumer => consumer.RatedElectricPower);
@@ -108,6 +110,7 @@ namespace ElectricalEngineering.Domain.Calculators {
         }
 
         private double GetReactiveRatedPowerOfTheBus() {
+            Debug.Assert(_consumers != null, nameof(_consumers) + " != null");
             double sum = _consumers.Sum(consumer =>
                 consumer.RatedElectricPower * consumer.UsageFactor * consumer.TanPowerFactor);
             if (EquivalentNumberOfElectricalReceivers <= 10) return 1.1 * sum;
@@ -116,6 +119,7 @@ namespace ElectricalEngineering.Domain.Calculators {
         }
 
         private double GetActiveRatedPowerOfTheBus() {
+            Debug.Assert(_consumers != null, nameof(_consumers) + " != null");
             double maxPower = _consumers.Max(consumer => consumer.RatedElectricPower);
             double sumPower = DesignLoadFactor *
                               _consumers.Sum(consumer => consumer.UsageFactor * consumer.RatedElectricPower);
@@ -128,6 +132,7 @@ namespace ElectricalEngineering.Domain.Calculators {
 
 
         private int GetEquivalentNumberOfElectricalReceivers() {
+            Debug.Assert(_consumers != null, nameof(_consumers) + " != null");
             double temp = Math.Pow(_consumers.Sum(consumer => consumer.RatedElectricPower), 2) /
                           SquareOfRatedPower;
             if (temp < 0) return 1;

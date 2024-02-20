@@ -1,11 +1,11 @@
 using ElectricalEngineering.Domain.Feeder;
 
-namespace ElectricalEngineering.Domain.Calculators {
+namespace ElectricalEngineering.DomainServices.Calculators {
     public class ConsumerCalculator {
         public void Fill(BaseConsumer consumer) {
             if (consumer.TypeGroundingSystem.Contains("TN")) { }
 
-            throw new FormatException("Не рализована система заземления IT");
+            throw new FormatException("Не реализована система заземления IT");
         }
 
         public double GetTanPowerFactor(double сonsumerPowerFactor) {
@@ -16,8 +16,8 @@ namespace ElectricalEngineering.Domain.Calculators {
             return сonsumerRatedElectricPower * сonsumerRatedElectricPower;
         }
 
-        public double GetReactivePower(BaseConsumer сonsumer) {
-            return сonsumer.RatedElectricPower * сonsumer.TanPowerFactor;
+        public double GetReactivePower(BaseConsumer consumer) {
+            return consumer.RatedElectricPower * consumer.TanPowerFactor;
         }
 
         public double GetRatedCurrent(BaseConsumer сonsumer) {

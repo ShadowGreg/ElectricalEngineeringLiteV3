@@ -1,6 +1,6 @@
 ﻿using ElectricalEngineering.CADCore;
-using ElectricalEngineering.Domain.Contrlollers.ElectricalPanel;
 using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Contrlollers.ElectricalPanel;
 using netDxf;
 
 namespace BackendTests;

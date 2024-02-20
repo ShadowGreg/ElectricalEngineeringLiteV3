@@ -1,6 +1,6 @@
-﻿using ElectricalEngineering.Domain.Contrlollers.BusBars;
-using ElectricalEngineering.Domain.Contrlollers.Consumer;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Contrlollers.BusBars;
+using ElectricalEngineering.DomainServices.Contrlollers.Consumer;
 
 namespace BackendTests;
 

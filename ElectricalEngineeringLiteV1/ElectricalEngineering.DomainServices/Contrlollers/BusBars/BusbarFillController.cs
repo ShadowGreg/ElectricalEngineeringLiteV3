@@ -1,9 +1,10 @@
-﻿using ElectricalEngineering.Domain.Calculators;
-using ElectricalEngineering.Domain.Contrlollers.Breakers;
-using ElectricalEngineering.Domain.Contrlollers.Feeder;
+﻿using ElectricalEngineering.Domain;
 using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Calculators;
+using ElectricalEngineering.DomainServices.Contrlollers.Breakers;
+using ElectricalEngineering.DomainServices.Feeder;
 
-namespace ElectricalEngineering.Domain.Contrlollers.BusBars {
+namespace ElectricalEngineering.DomainServices.Contrlollers.BusBars {
     public class BusbarFillController {
         private List<BaseConsumer> _consumers;
         private List<BaseFeeder> _feeders;
@@ -15,10 +16,10 @@ namespace ElectricalEngineering.Domain.Contrlollers.BusBars {
             _consumers = new List<BaseConsumer>();
             _feeders = new List<BaseFeeder>();
             _busbar = new BaseBusbar();
-            BusbarCalculations = new RMTCalculation();
+            BusbarCalculations = new RtmCalculation();
         }
 
-        public RMTCalculation BusbarCalculations { get; set; }
+        public RtmCalculation BusbarCalculations { get; set; }
 
         /// <summary>
         ///     Добавление одного электроприёмника на шину
@@ -29,11 +30,11 @@ namespace ElectricalEngineering.Domain.Contrlollers.BusBars {
         public void AddConsumerOnBus(BaseConsumer newConsumer, double length, double maxVoltageDrop = 2.5) {
             _consumers.Add(newConsumer);
             if (_feeders.Count == 0) {
-                _feeders.Add(new FeederFillController(newConsumer).GetFeeder(1, maxVoltageDrop, length));
+                _feeders.Add(new FeederFillService(newConsumer).GetFeeder(1, maxVoltageDrop, length));
             }
             else {
                 int index = _feeders.Count + 1;
-                _feeders.Add(new FeederFillController(newConsumer).GetFeeder(index, maxVoltageDrop, length));
+                _feeders.Add(new FeederFillService(newConsumer).GetFeeder(index, maxVoltageDrop, length));
             }
 
             _feeders[_feeders.Count - 1].OwnerId = _busbar.SelfId;

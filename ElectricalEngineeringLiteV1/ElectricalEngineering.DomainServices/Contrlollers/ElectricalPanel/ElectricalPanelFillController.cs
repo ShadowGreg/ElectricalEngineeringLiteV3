@@ -1,8 +1,9 @@
-﻿using ElectricalEngineering.Domain.Calculators;
-using ElectricalEngineering.Domain.Contrlollers.BusBars;
+﻿using ElectricalEngineering.Domain;
 using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Calculators;
+using ElectricalEngineering.DomainServices.Contrlollers.BusBars;
 
-namespace ElectricalEngineering.Domain.Contrlollers.ElectricalPanel {
+namespace ElectricalEngineering.DomainServices.Contrlollers.ElectricalPanel {
     public class ElectricalPanelFillController {
         private BaseElectricalPanel _electricalPanel;
         private  BusbarFillController _busbarFillController;
@@ -18,7 +19,7 @@ namespace ElectricalEngineering.Domain.Contrlollers.ElectricalPanel {
             });
         }
 
-        public static RMTCalculation PanelCalculations { get; set; }
+        public static RtmCalculation PanelCalculations { get; set; }
 
         private void AddConsumerOnPanel(BaseConsumer newConsumer, double length = 5, double maxVoltageDrop = 2.5,
             int busbarNum = 0) {
@@ -44,7 +45,7 @@ namespace ElectricalEngineering.Domain.Contrlollers.ElectricalPanel {
 
             _electricalPanel.BusBars[busbarNum].BusbarName = ConvertToRoman(busbarNum) + " СШ";
             _electricalPanel.BusBars[busbarNum].OwnerId = _electricalPanel.SelfId;
-            PanelCalculations = new RMTCalculation();
+            PanelCalculations = new RtmCalculation();
             List<BaseConsumer> localConsumers = new List<BaseConsumer>();
             foreach (var busbar in _electricalPanel.BusBars)
                 localConsumers.AddRange(busbar.Feeders.Select(feeder => feeder.Consumer));

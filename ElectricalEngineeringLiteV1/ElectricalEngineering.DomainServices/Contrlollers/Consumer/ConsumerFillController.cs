@@ -1,7 +1,7 @@
-﻿using ElectricalEngineering.Domain.Calculators;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
+using ElectricalEngineering.DomainServices.Calculators;
 
-namespace ElectricalEngineering.Domain.Contrlollers.Consumer {
+namespace ElectricalEngineering.DomainServices.Contrlollers.Consumer {
     public class ConsumerFillController {
         private readonly ConsumerCalculator _calculator;
 

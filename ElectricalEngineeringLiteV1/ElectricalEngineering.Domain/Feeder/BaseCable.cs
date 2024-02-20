@@ -12,7 +12,7 @@ namespace ElectricalEngineering.Domain.Feeder {
         ///     восстановлении данных не менялся порядок приёмнтков
         /// </summary>
         /// TODO нужно ли это потому что в последующем включить все элементы в фидер
-        public int SequentialNumber { get; set; } = 0;
+        public new int SequentialNumber { get; set; } = 0;
 
         /// <summary>
         ///     Наименование кабеля - пока решение ручной ввод
