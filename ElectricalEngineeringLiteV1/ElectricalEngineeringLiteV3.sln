@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.Blazo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.Tests", "ElectricalEngineering.Tests\ElectricalEngineering.Tests.csproj", "{A38B17B5-893B-4280-9EC4-1C257312CFFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.DomainServices", "ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj", "{2B08FCDC-2684-424A-9B74-619940B083D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{A38B17B5-893B-4280-9EC4-1C257312CFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A38B17B5-893B-4280-9EC4-1C257312CFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A38B17B5-893B-4280-9EC4-1C257312CFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B08FCDC-2684-424A-9B74-619940B083D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B08FCDC-2684-424A-9B74-619940B083D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B08FCDC-2684-424A-9B74-619940B083D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B08FCDC-2684-424A-9B74-619940B083D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{822FEC1D-2C81-4128-907C-14D472BECFF4} = {E1170766-D53A-467C-8FB7-F60496629E38}
