@@ -15,7 +15,12 @@
         ///     восстановлении данных не менялся порядок приёмников
         /// </summary>
         /// 
-        public int SequentialNumber { get; set; } 
+        public int SequentialNumber { get; set; }
+
+        /// <summary>
+        /// Наименование оборудования по которому можно вести поиск в БД
+        /// </summary>
+        public string Name { get; set; }
 
         private static string GetId() {
             return Guid.NewGuid().ToString("N");

@@ -2,10 +2,20 @@
 
 namespace ElectricalEngineering.Domain {
     public class BaseBusbar: DbDependence {
+        private string _busbarName = "I СШ";
+
         /// <summary>
         ///     Наименование шины
         /// </summary>
-        public string BusbarName { get; set; }
+        public string BusbarName
+        {
+            get => _busbarName;
+            set
+            {
+                _busbarName = value;
+                Name = value;
+            }
+        }
 
         /// <summary>
         ///     Мощность оборудования  установленная на секцию шин кВт

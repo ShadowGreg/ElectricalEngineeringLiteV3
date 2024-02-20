@@ -1,9 +1,20 @@
 ﻿namespace ElectricalEngineering.Domain.Feeder {
     public class BaseCircuitBreaker: DbDependence {
+        private string _nameOnBus = "QF";
+
         /// <summary>
         ///     Наименование автомата на шине
         /// </summary>
-        public string NameOnBus { get; set; } = "QF";
+        public string NameOnBus
+        {
+            get => _nameOnBus;
+            set
+            {
+                if (value == string.Empty) return;
+                _nameOnBus = value;
+                Name = value;
+            }
+        }
 
         /// <summary>
         ///     Тип автоматического выключателя по каталогу производителя

@@ -2,6 +2,8 @@
 
 namespace ElectricalEngineering.Domain.Feeder {
     public class BaseCable: DbDependence {
+        private string _cableName = string.Empty;
+
         /// <summary>
         ///     Материал кабеля медь или аллюминий
         /// </summary>
@@ -17,7 +19,16 @@ namespace ElectricalEngineering.Domain.Feeder {
         /// <summary>
         ///     Наименование кабеля - пока решение ручной ввод
         /// </summary>
-        public string CableName { get; set; } = string.Empty;
+        public string CableName
+        {
+            get => _cableName;
+            set
+            {
+                if (value == string.Empty) return;
+                _cableName = value;
+                Name = value;
+            }
+        }
 
         /// <summary>
         ///     Марка кабеля - пока вводится в ручную

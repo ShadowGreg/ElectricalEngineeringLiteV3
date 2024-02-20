@@ -2,10 +2,20 @@
 
 namespace ElectricalEngineering.Domain.Feeder {
     public class BaseConsumer: DbDependence {
+        private string _technologicalNumber = string.Empty;
         /// <summary>
         ///     1 Технологический номер оборудования
         /// </summary>
-        public string TechnologicalNumber { get; set; } = "";
+        public string TechnologicalNumber
+        {
+            get => _technologicalNumber;
+            set
+            {
+                if (value == string.Empty) return;
+                _technologicalNumber = value;
+                Name = value;
+            }
+        }
 
         /// <summary>
         ///     2 Наименование механизма
