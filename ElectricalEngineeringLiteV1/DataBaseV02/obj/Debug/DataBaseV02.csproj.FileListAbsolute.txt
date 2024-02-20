@@ -78,4 +78,3 @@ C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\DataBaseV02
 C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\DataBaseV02\bin\Debug\System.Data.SQLite.xml
 C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\DataBaseV02\bin\Debug\Microsoft.EntityFrameworkCore.Design.dll
 C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\DataBaseV02\bin\Debug\Microsoft.EntityFrameworkCore.Design.xml
-C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\DataBaseV02\obj\Debug\DataBaseV02.csproj.SuggestedBindingRedirects.cache
