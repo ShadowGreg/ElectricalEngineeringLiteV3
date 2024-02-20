@@ -22,7 +22,7 @@
         /// </summary>
         public string Name { get; set; }
 
-        private static string GetId() {
+        public static string GetId() {
             return Guid.NewGuid().ToString("N");
         }
     }

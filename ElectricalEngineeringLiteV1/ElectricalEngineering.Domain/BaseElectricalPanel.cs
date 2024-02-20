@@ -71,7 +71,5 @@ namespace ElectricalEngineering.Domain {
         ///     Расчётный ток щита
         /// </summary>
         public new double RatedCurrent { get; set; } = 1;
-
-       
     }
 }

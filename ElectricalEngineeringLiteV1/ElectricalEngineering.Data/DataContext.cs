@@ -14,5 +14,15 @@ namespace ElectricalEngineering.Data {
 
         public DataContext(DbContextOptions<DataContext> options)
             : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<BaseConsumer>().HasKey(b => b.SelfId);
+            modelBuilder.Entity<BaseCircuitBreaker>().HasKey(b => b.SelfId);
+            modelBuilder.Entity<BaseCable>().HasKey(b => b.SelfId);
+            modelBuilder.Entity<BaseFeeder>().HasKey(b => b.SelfId);
+            modelBuilder.Entity<BaseBusbar>().HasKey(b => b.SelfId);
+            //modelBuilder.Entity<BaseElectricalPanel>().HasKey(b => b.SelfId);
+        }
     }
 }

@@ -8,7 +8,7 @@ using ElectricalEngineering.DomainServices.Calculators;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ElectricalEngineering.Data.CounsumerDbContext>(
+builder.Services.AddDbContext<ElectricalEngineering.Data.DataContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ConsumerCalculator>();
