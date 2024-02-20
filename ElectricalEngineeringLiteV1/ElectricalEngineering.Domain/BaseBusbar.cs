@@ -1,7 +1,7 @@
 ﻿using ElectricalEngineering.Domain.Feeder;
 
 namespace ElectricalEngineering.Domain {
-    public class BaseBusbar: DBDependence {
+    public class BaseBusbar: DbDependence {
         /// <summary>
         ///     Наименование шины
         /// </summary>

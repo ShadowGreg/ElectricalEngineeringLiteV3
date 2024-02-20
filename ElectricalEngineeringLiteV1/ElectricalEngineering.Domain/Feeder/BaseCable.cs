@@ -1,7 +1,7 @@
 ﻿using System.Text;
 
 namespace ElectricalEngineering.Domain.Feeder {
-    public class BaseCable: DBDependence {
+    public class BaseCable: DbDependence {
         /// <summary>
         ///     Материал кабеля медь или аллюминий
         /// </summary>

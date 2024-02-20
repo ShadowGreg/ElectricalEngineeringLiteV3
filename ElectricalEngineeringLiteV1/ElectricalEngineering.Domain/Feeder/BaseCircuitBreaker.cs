@@ -1,5 +1,5 @@
 ﻿namespace ElectricalEngineering.Domain.Feeder {
-    public class BaseCircuitBreaker: DBDependence {
+    public class BaseCircuitBreaker: DbDependence {
         /// <summary>
         ///     Наименование автомата на шине
         /// </summary>

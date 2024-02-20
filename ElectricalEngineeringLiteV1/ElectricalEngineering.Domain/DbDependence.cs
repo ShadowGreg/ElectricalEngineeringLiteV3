@@ -1,26 +1,21 @@
 ﻿namespace ElectricalEngineering.Domain {
-    public abstract class DBDependence {
-        public DBDependence(string ownerId = null) {
-            SelfId = GetId();
-            OwnerId = ownerId;
-        }
-
+    public abstract class DbDependence(string ownerId = null) {
         /// <summary>
         ///     идентификационный номер оборудования для БД
         /// </summary>
-        public string SelfId { get; set; } = "";
+        public string SelfId { get; set; } = GetId();
 
         /// <summary>
         ///     идентификационный номер вышестоящего оборудования включающего экземпляр данного класса
         /// </summary>
-        public string OwnerId { get; set; } = "";
+        public string OwnerId { get; set; } = ownerId;
 
         /// <summary>
         ///     Порядковый номер в шине - что бы при
-        ///     восстановлении данных не менялся порядок приёмнтков
+        ///     восстановлении данных не менялся порядок приёмников
         /// </summary>
-        /// TODO нужно ли это потому что в последующем включить все элементы в фидер
-        public int SequentialNumber { get; set; } = 0;
+        /// 
+        public int SequentialNumber { get; set; } 
 
         private static string GetId() {
             return Guid.NewGuid().ToString("N");

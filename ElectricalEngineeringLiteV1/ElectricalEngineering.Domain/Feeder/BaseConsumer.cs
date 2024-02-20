@@ -1,7 +1,7 @@
 ﻿using System.Text;
 
 namespace ElectricalEngineering.Domain.Feeder {
-    public class BaseConsumer: DBDependence {
+    public class BaseConsumer: DbDependence {
         /// <summary>
         ///     1 Технологический номер оборудования
         /// </summary>
