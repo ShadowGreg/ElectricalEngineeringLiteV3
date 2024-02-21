@@ -1,10 +1,9 @@
 ﻿using ElectricalEngineering.Domain;
 using ElectricalEngineering.Domain.Abstractions.Repositories;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace ElectricalEngineering.Data.Repositories;
 
-public class InMemoryRepository<T, IActionResult>(List<T> data): IRepository<T>
+public class InMemoryRepository<T>(List<T> data): IRepository<T>
     where T : DbDependence {
     protected List<T> Data { get; set; } = data;
 

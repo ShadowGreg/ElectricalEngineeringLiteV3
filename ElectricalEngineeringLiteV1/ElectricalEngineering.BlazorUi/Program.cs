@@ -3,15 +3,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ElectricalEngineering.BlazorUi.Components;
 using ElectricalEngineering.BlazorUi.Components.Account;
+using ElectricalEngineering.BlazorUi.Controllers;
 using ElectricalEngineering.BlazorUi.Data;
-using ElectricalEngineering.DomainServices.Calculators;
+using ElectricalEngineering.Data.Repositories;
+using ElectricalEngineering.Domain.Feeder;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ElectricalEngineering.Data.DataContext>(
     options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<ConsumerCalculator>();
+builder.Services.AddScoped<BaseConsumerService>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

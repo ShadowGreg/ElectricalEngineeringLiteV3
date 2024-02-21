@@ -1,11 +1,12 @@
 ﻿@page "/"
+@using ElectricalEngineering.BlazorUi.Controllers
 @using ElectricalEngineering.Data
 @using ElectricalEngineering.Domain.Feeder
 @using ElectricalEngineering.DomainServices.Calculators
 @using Microsoft.EntityFrameworkCore
 
 @inject DataContext DbContext
-@inject ConsumerCalculator ConsumerCalculator
+@inject BaseConsumerService BaseConsumerService
 
 <PageTitle>Home</PageTitle>
 
@@ -15,8 +16,13 @@
 {
     @foreach (var consumer in _consumers)
     {
-        <div>@consumer.SelfId</div>
-        <div>@consumer.Name</div>
+        <tr>
+            <td>@consumer.SelfId</td>
+            <td>@consumer.Name</td>
+            <td>@consumer.MechanismName</td>
+            <td>@consumer.RatedElectricPower</td>
+            <td>@consumer.EfficiencyFactor</td>
+        </tr>
     }
 }
 else
@@ -29,9 +35,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
-        await DbContext.Database.EnsureCreatedAsync();
-        _consumers = await DbContext.Consumers.ToListAsync();
+        // await base.OnInitializedAsync();
+        // await DbContext.Database.EnsureCreatedAsync();
+        // _consumers = await DbContext.Consumers.ToListAsync();
+        _consumers = (List<BaseConsumer>?)await BaseConsumerService.GetAllConsumersAsync();
     }
 
 }
