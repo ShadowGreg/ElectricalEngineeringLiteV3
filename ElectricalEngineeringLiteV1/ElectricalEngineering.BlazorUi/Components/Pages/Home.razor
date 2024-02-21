@@ -7,6 +7,9 @@
 
 <PageTitle>Home</PageTitle>
 
+@{
+    System.Diagnostics.Debug.Assert(_consumers != null, nameof(_consumers) + " != null");
+}
 <MudDataGrid Items="@_consumers.Take(4)">
     <Columns>
         <PropertyColumn Property="x => x.MechanismName" Title="Наименование механизма" />
