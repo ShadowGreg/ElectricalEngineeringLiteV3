@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>aspnet-ElectricalEngineering.BlazorUi-DC1466B4-D381-40F3-8AC9-DF98CFCD96FF</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,11 +17,18 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2"/>
+        <PackageReference Include="MudBlazor" Version="6.16.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ElectricalEngineering.Data\ElectricalEngineering.Data.csproj" />
       <ProjectReference Include="..\ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

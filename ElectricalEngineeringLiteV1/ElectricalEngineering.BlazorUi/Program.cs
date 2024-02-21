@@ -5,9 +5,7 @@ using ElectricalEngineering.BlazorUi.Components;
 using ElectricalEngineering.BlazorUi.Components.Account;
 using ElectricalEngineering.BlazorUi.Controllers;
 using ElectricalEngineering.BlazorUi.Data;
-using ElectricalEngineering.Data.Repositories;
-using ElectricalEngineering.Domain.Feeder;
-using Microsoft.AspNetCore.Mvc;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +15,8 @@ builder.Services.AddDbContext<ElectricalEngineering.Data.DataContext>(
 builder.Services.AddScoped<BaseConsumerService>();
 
 // Add services to the container.
+builder.Services.AddMudServices();
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
