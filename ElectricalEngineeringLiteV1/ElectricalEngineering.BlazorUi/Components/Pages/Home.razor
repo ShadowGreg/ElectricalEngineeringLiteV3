@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using ElectricalEngineering.BlazorUi.Controllers
+@using ElectricalEngineering.BlazorUi.Services
 @using ElectricalEngineering.Domain.Feeder
 @using MudBlazor
 
@@ -7,15 +7,16 @@
 
 <PageTitle>Home</PageTitle>
 
+
+
 @{
     System.Diagnostics.Debug.Assert(_consumers != null, nameof(_consumers) + " != null");
 }
 <MudDataGrid Items="@_consumers.Take(4)">
     <Columns>
-        <PropertyColumn Property="x => x.MechanismName" Title="Наименование механизма" />
+        <PropertyColumn Property="x => x.Name" Title="Технологическое наименование"/>
         <PropertyColumn Property="x => x.RatedElectricPower" Title="Мощность, кВт"/>
-        <PropertyColumn Property="x => x.Name" Title="Технологическое наименование" />
-        <PropertyColumn Property="x => x.Voltage" Title="Рабочее напряжение, В"/>
+        <PropertyColumn Property="x => x.PowerFactor" Title="cos fi"/>
     </Columns>
 </MudDataGrid>
 
@@ -23,8 +24,7 @@
 @code {
     private List<BaseConsumer>? _consumers;
 
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync() {
         // await base.OnInitializedAsync();
         // await DbContext.Database.EnsureCreatedAsync();
         // _consumers = await DbContext.Consumers.ToListAsync();

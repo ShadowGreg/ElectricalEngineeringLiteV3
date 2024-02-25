@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ElectricalEngineering.BlazorUi.Components;
 using ElectricalEngineering.BlazorUi.Components.Account;
-using ElectricalEngineering.BlazorUi.Controllers;
 using ElectricalEngineering.BlazorUi.Data;
+using ElectricalEngineering.BlazorUi.Services;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);

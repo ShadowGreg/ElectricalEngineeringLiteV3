@@ -3,7 +3,7 @@ using ElectricalEngineering.Data.Repositories;
 using ElectricalEngineering.Domain.Abstractions.Repositories;
 using ElectricalEngineering.Domain.Feeder;
 
-namespace ElectricalEngineering.BlazorUi.Controllers;
+namespace ElectricalEngineering.BlazorUi.Services;
 
 public class BaseConsumerService {
     private readonly IRepository<BaseConsumer> _baseConsumerRepository 
