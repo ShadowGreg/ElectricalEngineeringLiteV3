@@ -3,11 +3,36 @@
 @using ElectricalEngineering.Domain.Feeder
 @using MudBlazor
 
+@inject ISnackbar Snackbar
+
+
 @inject BaseConsumerService BaseConsumerService
 
 <PageTitle>Home</PageTitle>
 
+<MudGrid>
+    <MudItem xs="12" Class="mainMenu">
+        <MudMenu Label="Open Menu" Variant="Variant.Filled" Color="Color.Primary">
+            <MudMenuItem OnClick="OnClick">OnClick Only</MudMenuItem>
+            <MudMenuItem OnTouch="OnTouch">OnTouch Only</MudMenuItem>
+            <MudMenuItem OnClick="OnClick" OnTouch="OnTouch">Both OnClick and OnTouch</MudMenuItem>
+        </MudMenu>
+    </MudItem>
+    <MudItem xs="3" Class="leftMenu">
+        Left menu
+    </MudItem>
+    <MudItem xs="6" Class="centerMenu">
+        Center menu
+    </MudItem>
+    <MudItem xs="3" Class="rightMenu">
+        Right menu
+    </MudItem>
+</MudGrid>
 
+@code {
+private void OnClick(MouseEventArgs args) => Snackbar.Add("OnClick Invoked");
+private void OnTouch(TouchEventArgs args) => Snackbar.Add("OnTouch Invoked");
+}
 
 @{
     System.Diagnostics.Debug.Assert(_consumers != null, nameof(_consumers) + " != null");
@@ -20,11 +45,14 @@
     </Columns>
 </MudDataGrid>
 
+<script src="_content/MudBlazor/MudBlazor.min.js"></script>
+
 
 @code {
     private List<BaseConsumer>? _consumers;
 
-    protected override async Task OnInitializedAsync() {
+    protected override async Task OnInitializedAsync()
+    {
         // await base.OnInitializedAsync();
         // await DbContext.Database.EnsureCreatedAsync();
         // _consumers = await DbContext.Consumers.ToListAsync();

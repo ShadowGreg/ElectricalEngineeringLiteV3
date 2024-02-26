@@ -57,6 +57,6 @@ namespace ElectricalEngineering.Presentation.Items
 
         public DbDependence BaseNode { get; }
         public ObservableCollection<Node> Children { get; }
-        public string Description { get; } = "";
+        public string Description { get; }
     }
 }
