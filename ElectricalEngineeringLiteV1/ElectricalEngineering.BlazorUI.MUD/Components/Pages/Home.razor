@@ -1,7 +1,27 @@
-﻿@page "/"
+﻿@using MudBlazor
+@inject ISnackbar Snackbar
+@rendermode InteractiveServer
+
+
+@page "/"
+
+
+
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<MudMenu Label="Open Menu" Variant="Variant.Filled" Color="Color.Primary">
+    <MudMenuItem OnClick="OnClick">OnClick Only</MudMenuItem>
+    <MudMenuItem OnTouch="OnTouch">OnTouch Only</MudMenuItem>
+    <MudMenuItem OnClick="OnClick" OnTouch="OnTouch">Both OnClick and OnTouch</MudMenuItem>
+</MudMenu>
+
+@code {
+    
+    private void OnClick(MouseEventArgs args) => Snackbar.Add("OnClick Invoked");
+    private void OnTouch(TouchEventArgs args) => Snackbar.Add("OnTouch Invoked");
+}
