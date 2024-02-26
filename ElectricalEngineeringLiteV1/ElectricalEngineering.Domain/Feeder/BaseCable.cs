@@ -2,7 +2,7 @@
 
 namespace ElectricalEngineering.Domain.Feeder {
     public class BaseCable: DbDependence {
-        private string _cableName = string.Empty;
+        private string _cableName = String.Empty;
 
         /// <summary>
         ///     Материал кабеля медь или аллюминий

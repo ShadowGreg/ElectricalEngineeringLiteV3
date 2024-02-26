@@ -9,7 +9,8 @@ public class BaseConsumerService {
     private readonly IRepository<BaseConsumer> _baseConsumerRepository 
         = new InMemoryRepository<BaseConsumer>(FakeDataBase.Consumers);
 
-    public async Task<IEnumerable<BaseConsumer>> GetAllConsumersAsync() {
+    public async Task<IEnumerable<BaseConsumer>> GetAllConsumersAsync() 
+    {
         var consumers = await _baseConsumerRepository.GetAllAsync();
         return consumers;
     }

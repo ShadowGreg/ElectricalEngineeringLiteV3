@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ElectricalEngineering.CADCore\ElectricalEngineering.CADCore.csproj" />
+      <ProjectReference Include="..\ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj" />
+      <ProjectReference Include="..\ElectricalEngineering.Domain\ElectricalEngineering.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -17,17 +17,17 @@ public class InMemoryRepository<T>(List<T> data): IRepository<T>
     }
 
     public async Task<string> AddAsync(T entity) {
-        data.Append(entity);
+        Data.Append(entity);
         return entity.SelfId;
     }
 
     public async Task UpdateAsync(T entity) {
-        var item  =data.FirstOrDefault(e => e.SelfId == entity.SelfId);
+        var item  =Data.FirstOrDefault(e => e.SelfId == entity.SelfId);
         if ( item != null) { item = entity; }
     }
 
     public async Task DeleteAsync(T entity) {
-        var item  =data.FirstOrDefault(e => e.SelfId == entity.SelfId);
-        if ( item != null) { data.Remove(item); }
+        var item  =Data.FirstOrDefault(e => e.SelfId == entity.SelfId);
+        if ( item != null) { Data.Remove(item); }
     }
 }

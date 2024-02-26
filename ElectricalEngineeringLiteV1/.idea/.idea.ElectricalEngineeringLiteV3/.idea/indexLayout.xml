@@ -3,6 +3,9 @@
   <component name="UserContentModel">
     <attachedFolders />
     <explicitIncludes />
-    <explicitExcludes />
+    <explicitExcludes>
+      <Path>ElectricalEngineering.BlazorUi/Data/app.db</Path>
+      <Path>ElectricalEngineering.Presentation/obj</Path>
+    </explicitExcludes>
   </component>
 </project>
