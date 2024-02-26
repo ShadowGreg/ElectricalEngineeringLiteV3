@@ -4,6 +4,7 @@
     <attachedFolders />
     <explicitIncludes />
     <explicitExcludes>
+      <Path>ElectricalEngineering.BlazorUI.MUD/obj</Path>
       <Path>ElectricalEngineering.BlazorUi/Data/app.db</Path>
       <Path>ElectricalEngineering.Presentation/obj</Path>
     </explicitExcludes>

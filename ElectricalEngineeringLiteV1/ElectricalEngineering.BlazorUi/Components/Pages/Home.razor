@@ -5,13 +5,12 @@
 
 @inject ISnackbar Snackbar
 
-
 @inject BaseConsumerService BaseConsumerService
 
 <PageTitle>Home</PageTitle>
 
 <MudGrid>
-    <MudItem xs="12" Class="mainMenu">
+    <MudItem xs="12" Class="mainMenu" @Style="centeredStyle" @onclick="ButtonClicked">
         <MudMenu Label="Open Menu" Variant="Variant.Filled" Color="Color.Primary">
             <MudMenuItem OnClick="OnClick">OnClick Only</MudMenuItem>
             <MudMenuItem OnTouch="OnTouch">OnTouch Only</MudMenuItem>
@@ -30,33 +29,40 @@
 </MudGrid>
 
 @code {
-private void OnClick(MouseEventArgs args) => Snackbar.Add("OnClick Invoked");
-private void OnTouch(TouchEventArgs args) => Snackbar.Add("OnTouch Invoked");
-}
-
-@{
-    System.Diagnostics.Debug.Assert(_consumers != null, nameof(_consumers) + " != null");
-}
-<MudDataGrid Items="@_consumers.Take(4)">
-    <Columns>
-        <PropertyColumn Property="x => x.Name" Title="Технологическое наименование"/>
-        <PropertyColumn Property="x => x.RatedElectricPower" Title="Мощность, кВт"/>
-        <PropertyColumn Property="x => x.PowerFactor" Title="cos fi"/>
-    </Columns>
-</MudDataGrid>
-
-<script src="_content/MudBlazor/MudBlazor.min.js"></script>
-
-
-@code {
-    private List<BaseConsumer>? _consumers;
-
-    protected override async Task OnInitializedAsync()
+    private void OnClick(MouseEventArgs args) => Snackbar.Add("OnClick Invoked");
+    private void OnTouch(TouchEventArgs args) => Snackbar.Add("OnTouch Invoked");
+    
+    private string centeredStyle = "display: flex; justify-content: center;";
+    
+    private void ButtonClicked()
     {
-        // await base.OnInitializedAsync();
-        // await DbContext.Database.EnsureCreatedAsync();
-        // _consumers = await DbContext.Consumers.ToListAsync();
-        _consumers = (List<BaseConsumer>?)await BaseConsumerService.GetAllConsumersAsync();
+        // Действия при нажатии на кнопку
+        // Например, вывод сообщения об успешном клике
+        Console.WriteLine("Кнопка была нажата!");
     }
-
 }
+
+@* @{ *@
+@*     System.Diagnostics.Debug.Assert(_consumers != null, nameof(_consumers) + " != null"); *@
+@* } *@
+@* <MudDataGrid Items="@_consumers.Take(4)"> *@
+@*     <Columns> *@
+@*         <PropertyColumn Property="x => x.Name" Title="Технологическое наименование"/> *@
+@*         <PropertyColumn Property="x => x.RatedElectricPower" Title="Мощность, кВт"/> *@
+@*         <PropertyColumn Property="x => x.PowerFactor" Title="cos fi"/> *@
+@*     </Columns> *@
+@* </MudDataGrid> *@
+@* *@
+@* *@
+@* @code { *@
+@*     private List<BaseConsumer>? _consumers; *@
+@* *@
+@*     protected override async Task OnInitializedAsync() *@
+@*     { *@
+@*         // await base.OnInitializedAsync(); *@
+@*         // await DbContext.Database.EnsureCreatedAsync(); *@
+@*         // _consumers = await DbContext.Consumers.ToListAsync(); *@
+@*         _consumers = (List<BaseConsumer>?)await BaseConsumerService.GetAllConsumersAsync(); *@
+@*     } *@
+@* *@
+@* } *@
