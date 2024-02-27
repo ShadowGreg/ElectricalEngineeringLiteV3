@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-ElectricalEngineering.BlazorUI-e505b135-006b-4c95-8ee9-1011937d6212</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+
+  
+  
+  <ItemGroup>
+	<PackageReference Include="MudBlazor" Version="6.16.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  
+  
+  <ItemGroup>
+    <ProjectReference Include="..\ElectricalEngineering.CADCore\ElectricalEngineering.CADCore.csproj" />
+    <ProjectReference Include="..\ElectricalEngineering.Data\ElectricalEngineering.Data.csproj" />
+    <ProjectReference Include="..\ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj" />
+    <ProjectReference Include="..\ElectricalEngineering.Domain\ElectricalEngineering.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

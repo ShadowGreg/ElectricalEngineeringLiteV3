@@ -1,5 +1,4 @@
-﻿using System.Data;
-using ElectricalEngineering.Domain.Feeder;
+﻿using ElectricalEngineering.Domain.Feeder;
 using ElectricalEngineering.DomainServices.StandardData.Breakers;
 
 namespace ElectricalEngineering.DomainServices.Contrlollers.Breakers {
@@ -12,7 +11,12 @@ namespace ElectricalEngineering.DomainServices.Contrlollers.Breakers {
         }
 
         public BaseCircuitBreaker BreakerSelect(BaseConsumer consumer, BaseCable cable) {
-            if (consumer.Voltage < 380) return GetSinglePolesBreaker(consumer, cable);
+            ArgumentNullException.ThrowIfNull(consumer);
+            ArgumentNullException.ThrowIfNull(cable);
+            if (consumer.Voltage < 380)
+            {
+                return GetSinglePolesBreaker(consumer, cable);
+            }
 
             return GetTreePolesBreaker(consumer, cable);
         }
@@ -20,12 +24,13 @@ namespace ElectricalEngineering.DomainServices.Contrlollers.Breakers {
         private BaseCircuitBreaker GetTreePolesBreaker(BaseConsumer consumer, BaseCable cable) {
             double consumerCurrent = consumer.RatedCurrent;
             double cableCurrent = cable.MaxCableCurrent;
-            if (consumerCurrent < cableCurrent) {
-                double key = GetKey(_breakerData._theePolesBreakerData, consumerCurrent);
-                return _breakerData._theePolesBreakerData[key];
+            if (consumerCurrent >= cableCurrent)
+            {
+                throw new InvalidOperationException("GetTreePolesBreaker ошибка в обработке");
             }
+            double key = GetKey(_breakerData._theePolesBreakerData, consumerCurrent);
+            return _breakerData._theePolesBreakerData[key];
 
-            throw new DataException("GetTreePolesBreaker ошибка в обработке");
         }
 
         private BaseCircuitBreaker GetSinglePolesBreaker(BaseConsumer consumer, BaseCable cable) {
@@ -36,7 +41,7 @@ namespace ElectricalEngineering.DomainServices.Contrlollers.Breakers {
                 return _breakerData._singlePolesBreakerData[key];
             }
 
-            throw new DataException("GetSinglePolesBreaker ошибка в обработке");
+            throw new InvalidOperationException("GetSinglePolesBreaker ошибка в обработке");
         }
 
         private double GetKey(Dictionary<double, BaseCircuitBreaker> somePolesBreakerData, double consumerCurrent) {

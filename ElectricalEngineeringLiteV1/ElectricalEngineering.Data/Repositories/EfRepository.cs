@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ElectricalEngineering.Data.Repositories;
 
-public class EfRepository<T>(DataContext context): IRepository<T>
-    where T : DbDependence {
+public class EfRepository<T>(DataContext context) : IRepository<T>
+    where T : DbDependence 
+{
     private readonly DataContext _context = context;
 
     public async Task<IEnumerable<T>> GetAllAsync() {
