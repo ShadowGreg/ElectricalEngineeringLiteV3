@@ -1,7 +1,6 @@
 ﻿@page "/"
 @using ElectricalEngineering.BlazorUi.Services
-@using ElectricalEngineering.Domain.Feeder
-@using MudBlazor
+@using ElectricalEngineering.BlazorUI.Components.MainWindowComponents;
 
 @inject ISnackbar Snackbar
 
@@ -10,29 +9,33 @@
 <PageTitle>Home</PageTitle>
 
 <MudGrid>
-    <MudItem xs="3" Class="leftMenu">
-        Left menu
+    <MudItem xs="12" Class="upWin">
+        <UpWindow/>
     </MudItem>
-    <MudItem xs="6" Class="centerMenu">
-        Center menu
+    <MudItem xs="3" Class="leftWin">
+        <LeftWindow/>
     </MudItem>
-    <MudItem xs="3" Class="rightMenu">
-        Right menu
+    <MudItem xs="6" Class="centerWin">
+        <СenterWindow/>
+    </MudItem>
+    <MudItem xs="3" Class="rightWin">
+        <RoightWindow/>
     </MudItem>
 </MudGrid>
 
 @code {
     private void OnClick(MouseEventArgs args) => Snackbar.Add("OnClick Invoked");
     private void OnTouch(TouchEventArgs args) => Snackbar.Add("OnTouch Invoked");
-    
+
     private string centeredStyle = "display: flex; justify-content: center;";
-    
+
     private void ButtonClicked()
     {
         // Действия при нажатии на кнопку
         // Например, вывод сообщения об успешном клике
         Console.WriteLine("Кнопка была нажата!");
     }
+
 }
 
 @* @{ *@

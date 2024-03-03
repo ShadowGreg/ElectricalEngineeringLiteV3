@@ -1,7 +1,7 @@
 ﻿using ElectricalEngineering.Domain.Feeder;
 using ElectricalEngineering.DomainServices.Contrlollers.ElectricalPanel;
 
-namespace BackendTests;
+namespace ElectricalEngineering.Tests;
 
 [TestFixture]
 public class NodeTests {

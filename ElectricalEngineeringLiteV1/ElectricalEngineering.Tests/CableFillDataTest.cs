@@ -1,9 +1,8 @@
 ﻿using ElectricalEngineering.Domain.Feeder;
-using ElectricalEngineering.DomainServices.Contrlollers.Cable;
 using ElectricalEngineering.DomainServices.Contrlollers.Consumer;
 using ElectricalEngineering.DomainServices.StandardData.Cable;
 
-namespace BackendTests;
+namespace ElectricalEngineering.Tests;
 
 [TestFixture]
 public class CableFillDataTest {

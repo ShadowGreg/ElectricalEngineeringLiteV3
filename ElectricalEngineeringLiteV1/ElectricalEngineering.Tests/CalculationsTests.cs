@@ -2,7 +2,7 @@
 using ElectricalEngineering.DomainServices.Contrlollers.Consumer;
 using ElectricalEngineering.DomainServices.Contrlollers.ElectricalPanel;
 
-namespace BackendTests.Properties;
+namespace ElectricalEngineering.Tests;
 
 [TestFixture]
 public class CalculationsTests {

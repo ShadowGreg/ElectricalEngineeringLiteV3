@@ -1,4 +1,4 @@
-﻿namespace BackendTests;
+﻿namespace ElectricalEngineering.Tests;
 
 [TestFixture]
 public class ConsumerFillControllerTests {

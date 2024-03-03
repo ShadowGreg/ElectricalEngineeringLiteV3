@@ -3,7 +3,7 @@ using ElectricalEngineering.Domain.Feeder;
 using ElectricalEngineering.DomainServices.Contrlollers.ElectricalPanel;
 using netDxf;
 
-namespace BackendTests;
+namespace ElectricalEngineering.Tests;
 
 [TestFixture]
 public class CADCoreTests {

@@ -1,6 +1,4 @@
-﻿using ElectricalEngineering.Domain.Feeder;
-
-namespace DataBaseSL01.Tests;
+﻿namespace ElectricalEngineering.Tests;
 //
 // [TestFixture]
 // public class ConsumerControllerTests {

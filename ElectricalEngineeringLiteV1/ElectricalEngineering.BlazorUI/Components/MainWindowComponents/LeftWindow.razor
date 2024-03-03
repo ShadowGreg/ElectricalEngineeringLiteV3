@@ -1,0 +1,68 @@
+﻿<div align="center">
+    <MudText Typo="Typo.subtitle1">Свойства объекта</MudText>
+</div>
+
+<MudDataGrid T="Element" Items="@Elements.Take(4)" ReadOnly="@_readOnly"
+             EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+             StartedEditingItem="@StartedEditingItem"
+             CanceledEditingItem="@CanceledEditingItem"
+             CommittedItemChanges="@CommittedItemChanges"
+             Bordered="false" Dense="false"
+             EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
+    <Columns>
+        <PropertyColumn Property="x => x.Number" Title="Nr" IsEditable="false"/>
+        <PropertyColumn Property="x => x.Sign"/>
+    </Columns>
+</MudDataGrid>
+
+
+@code {
+    private IEnumerable<Element> Elements = new List<Element>();
+    private bool _readOnly;
+    private bool _isCellEditMode;
+    private List<string> _events = new();
+    private bool _editTriggerRowClick;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Elements = new List<Element>()
+        {
+            new Element() { Number = 1, Sign = "H", Name = "Hydrogen", Position = 1, Molar = "1.008" },
+            new Element() { Number = 2, Sign = "He", Name = "Helium", Position = 18, Molar = "4.0026" },
+            new Element() { Number = 3, Sign = "Li", Name = "Lithium", Position = 1, Molar = "6.94" },
+            new Element() { Number = 4, Sign = "Be", Name = "Beryllium", Position = 2, Molar = "9.0122" },
+            new Element() { Number = 5, Sign = "B", Name = "Boron", Position = 13, Molar = "10.81" },
+            new Element() { Number = 6, Sign = "C", Name = "Carbon", Position = 14, Molar = "12.011" },
+            new Element() { Number = 7, Sign = "N", Name = "Nitrogen", Position = 15, Molar = "14.007" },
+            new Element() { Number = 8, Sign = "O", Name = "Oxygen", Position = 16, Molar = "15.999" },
+            new Element() { Number = 9, Sign = "F", Name = "Fluorine", Position = 17, Molar = "18.998" },
+            new Element() { Number = 10, Sign = "Ne", Name = "Neon", Position = 18, Molar = "20.180" }
+        };
+    }
+
+    // events
+    void StartedEditingItem(Element item)
+    {
+        _events.Insert(0, $"Event = StartedEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    void CanceledEditingItem(Element item)
+    {
+        _events.Insert(0, $"Event = CanceledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    void CommittedItemChanges(Element item)
+    {
+        _events.Insert(0, $"Event = CommittedItemChanges, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    public class Element
+    {
+        public int Number { get; set; }
+        public string Sign { get; set; }
+        public string Name { get; set; }
+        public int Position { get; set; }
+        public string Molar { get; set; }
+    }
+
+}

@@ -2,7 +2,7 @@
 using ElectricalEngineering.DomainServices.Contrlollers.BusBars;
 using ElectricalEngineering.DomainServices.Contrlollers.Consumer;
 
-namespace BackendTests;
+namespace ElectricalEngineering.Tests;
 
 public class BusbarFillControllerTests {
     private ConsumerFillController _consumerFillController;
