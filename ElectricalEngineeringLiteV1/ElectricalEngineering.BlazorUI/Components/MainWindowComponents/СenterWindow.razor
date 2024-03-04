@@ -1,8 +1,11 @@
-﻿<MudTabs Elevation="4" Rounded="true" Centered="true" Color="@Color.Primary">
+﻿@using ElectricalEngineering.BlazorUI.Components.TabsComponents;
+
+
+<MudTabs Elevation="4" Rounded="true" Centered="true" Color="@Color.Primary">
     <MudTabPanel Text="Структурная схема">
         Первый текст
     </MudTabPanel>
     <MudTabPanel Text="Расчётная таблица">
-        Второй текст
+        <CalculateTable/>
     </MudTabPanel>
 </MudTabs>
