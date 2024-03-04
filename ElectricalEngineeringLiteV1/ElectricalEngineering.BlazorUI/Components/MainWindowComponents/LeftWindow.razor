@@ -1,27 +1,30 @@
-﻿<div align="center">
-    <MudText Typo="Typo.subtitle1">Свойства объекта</MudText>
-</div>
+﻿@using System.Collections.Immutable
 
-<MudDataGrid T="Element" Items="@Elements.Take(4)" ReadOnly="@_readOnly"
-             EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
-             StartedEditingItem="@StartedEditingItem"
-             CanceledEditingItem="@CanceledEditingItem"
-             CommittedItemChanges="@CommittedItemChanges"
-             Bordered="false" Dense="false"
-             EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
+<MudText Typo="Typo.h6">Свойства объекта</MudText>
+<MudDataGrid T="Element" Items="@Elements.ToImmutableArray()" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+             StartedEditingItem="@StartedEditingItem" CanceledEditingItem="@CanceledEditingItem" CommittedItemChanges="@CommittedItemChanges"
+             QuickFilter="@_quickFilter"
+             Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
+
+    <ToolBarContent>
+        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
+        </MudTextField>
+    </ToolBarContent>
     <Columns>
-        <PropertyColumn Property="x => x.Number" Title="Nr" IsEditable="false"/>
-        <PropertyColumn Property="x => x.Sign"/>
+        <PropertyColumn Property="x => x.Sign" Title="Наименование" IsEditable="false"/>
+        <PropertyColumn Property="x => x.Name" Title="Значение"/>
     </Columns>
 </MudDataGrid>
-
 
 @code {
     private IEnumerable<Element> Elements = new List<Element>();
     private bool _readOnly;
     private bool _isCellEditMode;
     private List<string> _events = new();
-    private bool _editTriggerRowClick;
+    private const bool _editTriggerRowClick = true;
+    private string _searchString;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,6 +58,24 @@
     {
         _events.Insert(0, $"Event = CommittedItemChanges, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
     }
+
+    // quick filter - filter globally across multiple columns with the same input
+    private Func<Element, bool> _quickFilter => x =>
+        {
+            if (string.IsNullOrWhiteSpace(_searchString))
+                return true;
+
+            if (x.Sign.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (x.Name.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if ($"{x.Number} {x.Position} {x.Molar}".Contains(_searchString))
+                return true;
+
+            return false;
+        };
 
     public class Element
     {
