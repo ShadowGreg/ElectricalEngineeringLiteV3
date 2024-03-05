@@ -2,6 +2,7 @@
 @using ElectricalEngineering.BlazorUi.Services
 @using ElectricalEngineering.BlazorUI.Components.MainWindowComponents;
 @using ElectricalEngineering.Data.Data
+@using ElectricalEngineering.Domain.Feeder
 
 @inject ISnackbar Snackbar
 
@@ -12,17 +13,18 @@
         <UpWindow/>
     </MudItem>
     <MudItem xs="3" Class="leftWin">
-        <LeftWindow @bind-Data="_fakeDataBase"/>
+        <LeftWindow @bind-Data="_fakeDataBase" @bind-SelectedObject ="_selectConsumer"/>
     </MudItem>
     <MudItem xs="6" Class="centerWin">
         <СenterWindow @bind-Data="_fakeDataBase"/>
     </MudItem>
     <MudItem xs="3" Class="rightWin">
-        <RightWindow @bind-Data="_fakeDataBase"/>
+        <RightWindow @bind-Data="_fakeDataBase" @bind-SelectedObject ="_selectConsumer"/>
     </MudItem>
 </MudGrid>
 
 @code {
+    private BaseConsumer? _selectConsumer;
     private FakeDataBase? _fakeDataBase;
     private void OnClick(MouseEventArgs args) => Snackbar.Add("OnClick Invoked");
     private void OnTouch(TouchEventArgs args) => Snackbar.Add("OnTouch Invoked");
