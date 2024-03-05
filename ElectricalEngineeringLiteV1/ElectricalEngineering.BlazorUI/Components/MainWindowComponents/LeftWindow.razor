@@ -1,4 +1,6 @@
 ﻿@using System.Collections.Immutable
+@using ElectricalEngineering.Data.Data
+@using ElectricalEngineering.Domain.Feeder
 
 <MudText Typo="Typo.h6">Свойства объекта</MudText>
 <MudDataGrid T="Element" Items="@Elements.ToImmutableArray()" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
@@ -18,6 +20,35 @@
 </MudDataGrid>
 
 @code {
+
+    [Parameter]
+    public FakeDataBase? Data { get; set; }
+
+    private EventCallback<FakeDataBase> _dataChangedEventCallback;
+
+    [Parameter]
+    public EventCallback<FakeDataBase> DataChanged
+    {
+        get => _dataChangedEventCallback;
+        set { _dataChangedEventCallback = value; }
+    }
+
+    protected override void OnInitialized()
+    {
+        _dataChangedEventCallback = EventCallback.Factory.Create<FakeDataBase>(this, DataChangedAsync);
+    }
+
+    private Task DataChangedAsync(FakeDataBase data)
+    {
+        // Ваша логика обработки события DataChanged
+        return Task.CompletedTask;
+    }
+
+}
+
+@code {
+    [Parameter]
+    public BaseConsumer? SelectedItem { get; set; }
 
     private List<Element> Elements = new List<Element>()
     {

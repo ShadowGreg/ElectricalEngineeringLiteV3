@@ -2,7 +2,7 @@
 using ElectricalEngineering.Domain.Feeder;
 
 namespace ElectricalEngineering.Data.Data {
-    public class FakeDataBase {
+    public partial class FakeDataBase {
         public static List<BaseConsumer> Consumers = [
             #region Consumers
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using ElectricalEngineering.Domain.Feeder;
 using ElectricalEngineering.DomainServices.Contrlollers.ElectricalPanel;
-using ElectricalEngineering.Presentation.Items;
+using ElectricalEngineering.Presentation.TreeViewItems;
 
 namespace ElectricalEngineering.Presentation {
     public partial class ViewModel {

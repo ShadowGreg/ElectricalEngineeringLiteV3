@@ -1,4 +1,4 @@
-﻿namespace ElectricalEngineering.Presentation.Items {
+﻿namespace ElectricalEngineering.Presentation.TreeViewItems {
     public class Row {
         /// <summary>
         ///     Наименование ЭП

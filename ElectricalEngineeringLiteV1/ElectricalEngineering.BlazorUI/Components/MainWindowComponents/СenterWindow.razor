@@ -1,4 +1,5 @@
 ﻿@using ElectricalEngineering.BlazorUI.Components.TabsComponents;
+@using ElectricalEngineering.Data.Data
 
 
 <MudTabs Elevation="4" Rounded="true" Centered="true" Color="@Color.Primary">
@@ -9,3 +10,30 @@
         <CalculateTable/>
     </MudTabPanel>
 </MudTabs>
+
+@code {
+
+    [Parameter]
+    public FakeDataBase? Data { get; set; }
+
+    private EventCallback<FakeDataBase> _dataChangedEventCallback;
+
+    [Parameter]
+    public EventCallback<FakeDataBase> DataChanged
+    {
+        get => _dataChangedEventCallback;
+        set { _dataChangedEventCallback = value; }
+    }
+
+    protected override void OnInitialized()
+    {
+        _dataChangedEventCallback = EventCallback.Factory.Create<FakeDataBase>(this, DataChangedAsync);
+    }
+
+    private Task DataChangedAsync(FakeDataBase data)
+    {
+        // Ваша логика обработки события DataChanged
+        return Task.CompletedTask;
+    }
+
+}

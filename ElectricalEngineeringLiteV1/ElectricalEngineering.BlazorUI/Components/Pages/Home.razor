@@ -1,27 +1,29 @@
 ﻿@page "/"
 @using ElectricalEngineering.BlazorUi.Services
 @using ElectricalEngineering.BlazorUI.Components.MainWindowComponents;
+@using ElectricalEngineering.Data.Data
 
 @inject ISnackbar Snackbar
 
 @inject BaseConsumerService BaseConsumerService
 
-<MudGrid  Justify="Justify.Center">
+<MudGrid Justify="Justify.Center">
     <MudItem xs="12" Class="upWin">
         <UpWindow/>
     </MudItem>
     <MudItem xs="3" Class="leftWin">
-        <LeftWindow/>
+        <LeftWindow @bind-Data="_fakeDataBase"/>
     </MudItem>
     <MudItem xs="6" Class="centerWin">
-        <СenterWindow/>
+        <СenterWindow @bind-Data="_fakeDataBase"/>
     </MudItem>
     <MudItem xs="3" Class="rightWin">
-        <RightWindow/>
+        <RightWindow @bind-Data="_fakeDataBase"/>
     </MudItem>
 </MudGrid>
 
 @code {
+    private FakeDataBase? _fakeDataBase;
     private void OnClick(MouseEventArgs args) => Snackbar.Add("OnClick Invoked");
     private void OnTouch(TouchEventArgs args) => Snackbar.Add("OnTouch Invoked");
 
@@ -32,6 +34,12 @@
         // Действия при нажатии на кнопку
         // Например, вывод сообщения об успешном клике
         Console.WriteLine("Кнопка была нажата!");
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        _fakeDataBase = new FakeDataBase();
+        return base.OnInitializedAsync();
     }
 
 }

@@ -2,7 +2,7 @@
 using ElectricalEngineering.Domain;
 using ElectricalEngineering.Domain.Feeder;
 
-namespace ElectricalEngineering.Presentation.Items
+namespace ElectricalEngineering.Presentation.TreeViewItems
 {
     public class Node
     {

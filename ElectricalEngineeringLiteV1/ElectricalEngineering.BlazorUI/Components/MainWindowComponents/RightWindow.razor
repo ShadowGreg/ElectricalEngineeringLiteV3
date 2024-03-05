@@ -1,106 +1,109 @@
-﻿@using System.Collections.Immutable
+﻿razor
+@using ElectricalEngineering.Data.Data
+@using ElectricalEngineering.Domain.Feeder
 
+<!-- Button to add a new electrical consumer -->
 <div align="center">
     <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" VerticalAlign="true">
-        <MudButton StartIcon="@Icons.Material.Filled.NoteAdd">Добавить электроприёмник</MudButton>
+        <MudButton StartIcon="@Icons.Material.Filled.NoteAdd">Add Electrical Consumer</MudButton>
     </MudButtonGroup>
 </div>
 
+<!-- Header for the list of consumers -->
+<MudText Typo="Typo.h6">List of Electrical Consumers</MudText>
 
-<MudText Typo="Typo.h6">Перечень потребителей</MudText>
-<MudDataGrid T="Element" 
-             Items="@Elements.ToImmutableArray()" 
-             ReadOnly="@_readOnly" 
+<!-- DataGrid to display the list of consumers -->
+@{
+}
+<MudDataGrid T="BaseConsumer"
+             Items="@Elements"
+             ReadOnly="@_isReadOnly"
              EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
-             StartedEditingItem="@StartedEditingItem" 
-             CanceledEditingItem="@CanceledEditingItem" 
-             CommittedItemChanges="@CommittedItemChanges"
+             StartedEditingItem="@HandleStartedEditingItem"
+             CanceledEditingItem="@HandleCanceledEditingItem"
+             CommittedItemChanges="@HandleCommittedItemChanges"
              QuickFilter="@_quickFilter"
-             Bordered="true" 
-             Dense="true" 
-             EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
-
+             Bordered="true"
+             Dense="true"
+             EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)"
+             bind-SelectedItem="selectConsumer"
+             >
     <ToolBarContent>
         <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                       AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
         </MudTextField>
     </ToolBarContent>
     <Columns>
-        <PropertyColumn Property="x => x.Sign" Title="Наименование" IsEditable="false" StickyLeft="true" />
-        <PropertyColumn Property="x => x.Name" Title="Значение"/>
-        <PropertyColumn Property="x => x.Position" Title="Значение"/>
+        <!-- Template column for edit button -->
+        <TemplateColumn Hidden="@(_isCellEditMode || _isReadOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@context.Actions.StartEditingItemAsync"/>
+            </CellTemplate>
+        </TemplateColumn>
+        <!-- Property columns for consumer data -->
+        <PropertyColumn Property="x => x.TechnologicalNumber" Title="Name" IsEditable="false" StickyLeft="true"/>
+        <PropertyColumn Property="x => x.RatedElectricPower" Title="Power, kW"/>
+        <PropertyColumn Property="x => x.PowerFactor" Title="Power Factor"/>
     </Columns>
 </MudDataGrid>
 
 @code {
+    [Parameter]
+    public FakeDataBase? Data { get; set; }
 
-    private List<Element> Elements = new List<Element>()
+    private EventCallback<FakeDataBase> _dataChangedEventCallback;
+
+    [Parameter]
+    public EventCallback<FakeDataBase> DataChanged
     {
-        new Element() { Number = 1, Sign = "H", Name = "Hydrogen", Position = 1, Molar = "1.008" },
-        new Element() { Number = 2, Sign = "He", Name = "Helium", Position = 18, Molar = "4.0026" },
-        new Element() { Number = 3, Sign = "Li", Name = "Lithium", Position = 1, Molar = "6.94" },
-        new Element() { Number = 4, Sign = "Be", Name = "Beryllium", Position = 2, Molar = "9.0122" },
-        new Element() { Number = 5, Sign = "B", Name = "Boron", Position = 13, Molar = "10.81" },
-        new Element() { Number = 6, Sign = "C", Name = "Carbon", Position = 14, Molar = "12.011" },
-        new Element() { Number = 7, Sign = "N", Name = "Nitrogen", Position = 15, Molar = "14.007" },
-        new Element() { Number = 8, Sign = "O", Name = "Oxygen", Position = 16, Molar = "15.999" },
-        new Element() { Number = 9, Sign = "F", Name = "Fluorine", Position = 17, Molar = "18.998" },
-        new Element() { Number = 10, Sign = "Ne", Name = "Neon", Position = 18, Molar = "20.180" }
-    };
+        get => _dataChangedEventCallback;
+        set { _dataChangedEventCallback = value; }
+    }
 
-    private bool _readOnly;
+    protected override void OnInitialized()
+    {
+        _dataChangedEventCallback = EventCallback.Factory.Create<FakeDataBase>(this, DataChangedAsync);
+    }
+
+    private Task DataChangedAsync(FakeDataBase data)
+    {
+// Handle the DataChanged event
+        return Task.CompletedTask;
+    }
+    
+    private BaseConsumer? selectConsumer;
+    private List<BaseConsumer> Elements = FakeDataBase.Consumers;
+    private bool _isReadOnly;
     private bool _isCellEditMode;
-    private List<string> _events = new();
-    private const bool _editTriggerRowClick = true;
+    private List<string> _eventLog = new();
+    private const bool _editTriggerRowClick = false;
     private string _searchString;
 
-
-    protected override async Task OnInitializedAsync()
+// Event handlers
+    void HandleStartedEditingItem(BaseConsumer item)
     {
-
+        _eventLog.Insert(0, $"Event = StartedEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
     }
 
-    // events
-    void StartedEditingItem(Element item)
+    void HandleCanceledEditingItem(BaseConsumer item)
     {
-        _events.Insert(0, $"Event = StartedEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+        _eventLog.Insert(0, $"Event = CanceledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
     }
 
-    void CanceledEditingItem(Element item)
+    void HandleCommittedItemChanges(BaseConsumer item)
     {
-        _events.Insert(0, $"Event = CanceledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+        _eventLog.Insert(0, $"Event = CommittedItemChanges, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
     }
 
-    void CommittedItemChanges(Element item)
-    {
-        _events.Insert(0, $"Event = CommittedItemChanges, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
-    }
-
-    // quick filter - filter globally across multiple columns with the same input
-    private Func<Element, bool> _quickFilter => x =>
+// Quick filter function
+    private Func<BaseConsumer, bool> _quickFilter => x =>
         {
             if (string.IsNullOrWhiteSpace(_searchString))
                 return true;
-
-            if (x.Sign.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (x.TechnologicalNumber.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-
-            if (x.Name.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (x.MechanismName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
                 return true;
-
-            if ($"{x.Number} {x.Position} {x.Molar}".Contains(_searchString))
-                return true;
-
             return false;
         };
-
-    public class Element
-    {
-        public int Number { get; set; }
-        public string Sign { get; set; }
-        public string Name { get; set; }
-        public int Position { get; set; }
-        public string Molar { get; set; }
-    }
-
 }
