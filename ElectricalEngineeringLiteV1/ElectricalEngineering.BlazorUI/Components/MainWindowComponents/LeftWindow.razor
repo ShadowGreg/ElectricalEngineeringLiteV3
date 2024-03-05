@@ -20,6 +20,18 @@
 </MudDataGrid>
 
 @code {
+    private BaseConsumer? _selectedItem;
+
+    [Parameter]
+    public BaseConsumer? SelectedItem
+    {
+        get => _selectedItem;
+        set
+        {
+            _selectedItem = value;
+            Console.WriteLine("SelectedItem сработало");
+        }
+    }
 
     [Parameter]
     public FakeDataBase? Data { get; set; }
@@ -47,8 +59,6 @@
 }
 
 @code {
-    [Parameter]
-    public BaseConsumer? SelectedItem { get; set; }
 
     private List<Element> Elements = new List<Element>()
     {

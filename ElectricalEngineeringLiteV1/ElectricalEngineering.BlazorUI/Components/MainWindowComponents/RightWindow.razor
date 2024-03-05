@@ -1,5 +1,4 @@
-﻿razor
-@using ElectricalEngineering.Data.Data
+﻿@using ElectricalEngineering.Data.Data
 @using ElectricalEngineering.Domain.Feeder
 
 <!-- Button to add a new electrical consumer -->
@@ -12,9 +11,11 @@
 <!-- Header for the list of consumers -->
 <MudText Typo="Typo.h6">List of Electrical Consumers</MudText>
 
+<!-- Selected item -->
+<MudText Typo="Typo.h6">Selected: @SelectedObject?.TechnologicalNumber</MudText>
+
 <!-- DataGrid to display the list of consumers -->
-@{
-}
+
 <MudDataGrid T="BaseConsumer"
              Items="@Elements"
              ReadOnly="@_isReadOnly"
@@ -26,8 +27,10 @@
              Bordered="true"
              Dense="true"
              EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)"
-             bind-SelectedItem="selectConsumer"
-             >
+             MultiSelection=multiSelection
+             @bind-SelectedItems="_selectionList"
+             @bind-SelectedItem="SelectedObject">
+
     <ToolBarContent>
         <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                       AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
@@ -40,6 +43,7 @@
                 <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@context.Actions.StartEditingItemAsync"/>
             </CellTemplate>
         </TemplateColumn>
+        <SelectColumn/>
         <!-- Property columns for consumer data -->
         <PropertyColumn Property="x => x.TechnologicalNumber" Title="Name" IsEditable="false" StickyLeft="true"/>
         <PropertyColumn Property="x => x.RatedElectricPower" Title="Power, kW"/>
@@ -47,11 +51,16 @@
     </Columns>
 </MudDataGrid>
 
+
+
 @code {
+    private EventCallback<FakeDataBase> _dataChangedEventCallback;
+    private HashSet<BaseConsumer> _selectionList = new();
+    private BaseConsumer SelectedObject = new();
+    private bool multiSelection = true;
     [Parameter]
     public FakeDataBase? Data { get; set; }
 
-    private EventCallback<FakeDataBase> _dataChangedEventCallback;
 
     [Parameter]
     public EventCallback<FakeDataBase> DataChanged
@@ -62,6 +71,7 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
         _dataChangedEventCallback = EventCallback.Factory.Create<FakeDataBase>(this, DataChangedAsync);
     }
 
@@ -70,7 +80,7 @@
 // Handle the DataChanged event
         return Task.CompletedTask;
     }
-    
+
     private BaseConsumer? selectConsumer;
     private List<BaseConsumer> Elements = FakeDataBase.Consumers;
     private bool _isReadOnly;
@@ -106,4 +116,6 @@
                 return true;
             return false;
         };
+
+
 }
