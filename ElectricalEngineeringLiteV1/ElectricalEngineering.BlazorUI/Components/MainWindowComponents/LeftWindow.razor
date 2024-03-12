@@ -3,13 +3,20 @@
 @using ElectricalEngineering.Domain.Feeder
 
 <MudText Typo="Typo.h6">Свойства объекта</MudText>
-<MudDataGrid T="Element" Items="@Elements.ToImmutableArray()" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
-             StartedEditingItem="@StartedEditingItem" CanceledEditingItem="@CanceledEditingItem" CommittedItemChanges="@CommittedItemChanges"
+<MudDataGrid T="Element" 
+             Items="@Elements.ToImmutableArray()" 
+             ReadOnly="@_readOnly" 
+             EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+             StartedEditingItem="@StartedEditingItem" 
+             CanceledEditingItem="@CanceledEditingItem" 
+             CommittedItemChanges="@CommittedItemChanges"
              QuickFilter="@_quickFilter"
-             Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
+             Bordered="true" 
+             Dense="true" 
+             EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
 
     <ToolBarContent>
-        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+        <MudTextField @bind-Value="_searchStringLeftWindow" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                       AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
         </MudTextField>
     </ToolBarContent>
@@ -22,7 +29,7 @@
 @code {
     private BaseConsumer? _selectedItem;
 
-    [Parameter]
+  
     public BaseConsumer? SelectedItem
     {
         get => _selectedItem;
@@ -78,7 +85,7 @@
     private bool _isCellEditMode;
     private List<string> _events = new();
     private const bool _editTriggerRowClick = true;
-    private string _searchString;
+    private string _searchStringLeftWindow;
 
     // events
     void StartedEditingItem(Element item)
@@ -99,16 +106,16 @@
     // quick filter - filter globally across multiple columns with the same input
     private Func<Element, bool> _quickFilter => x =>
         {
-            if (string.IsNullOrWhiteSpace(_searchString))
+            if (string.IsNullOrWhiteSpace(_searchStringLeftWindow))
                 return true;
 
-            if (x.Sign.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (x.Sign.Contains(_searchStringLeftWindow, StringComparison.OrdinalIgnoreCase))
                 return true;
 
-            if (x.Name.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (x.Name.Contains(_searchStringLeftWindow, StringComparison.OrdinalIgnoreCase))
                 return true;
 
-            if ($"{x.Number} {x.Position} {x.Molar}".Contains(_searchString))
+            if ($"{x.Number} {x.Position} {x.Molar}".Contains(_searchStringLeftWindow))
                 return true;
 
             return false;

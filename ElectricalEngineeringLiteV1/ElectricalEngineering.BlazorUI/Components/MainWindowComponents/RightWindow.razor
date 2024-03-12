@@ -32,7 +32,7 @@
              @bind-SelectedItem="SelectedObject">
 
     <ToolBarContent>
-        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+        <MudTextField @bind-Value="_searchStringRightWindow" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                       AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0">
         </MudTextField>
     </ToolBarContent>
@@ -88,7 +88,7 @@
     private bool _isCellEditMode;
     private List<string> _eventLog = new();
     private const bool _editTriggerRowClick = false;
-    private string _searchString;
+    private string _searchStringRightWindow;
 
 // Event handlers
     void HandleStartedEditingItem(BaseConsumer item)
@@ -109,11 +109,11 @@
 // Quick filter function
     private Func<BaseConsumer, bool> _quickFilter => x =>
         {
-            if (string.IsNullOrWhiteSpace(_searchString))
+            if (string.IsNullOrWhiteSpace(_searchStringRightWindow))
                 return true;
-            if (x.TechnologicalNumber.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (x.TechnologicalNumber.Contains(_searchStringRightWindow, StringComparison.OrdinalIgnoreCase))
                 return true;
-            if (x.MechanismName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            if (x.MechanismName.Contains(_searchStringRightWindow, StringComparison.OrdinalIgnoreCase))
                 return true;
             return false;
         };
