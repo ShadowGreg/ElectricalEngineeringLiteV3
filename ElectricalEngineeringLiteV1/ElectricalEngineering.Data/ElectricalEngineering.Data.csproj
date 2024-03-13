@@ -19,4 +19,10 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="..\..\..\..\Users\shado\Downloads\nanoCAD-ETM_iPRO_ElectroCabel_Kolchugino_ver_2.0.sdf">
+        <Link>nanoCAD-ETM_iPRO_ElectroCabel_Kolchugino_ver_2.0.sdf</Link>
+      </Content>
+    </ItemGroup>
+
 </Project>

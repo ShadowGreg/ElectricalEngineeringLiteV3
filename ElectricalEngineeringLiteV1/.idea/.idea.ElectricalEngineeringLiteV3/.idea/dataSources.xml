@@ -23,7 +23,7 @@
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="app" uuid="e08b78cc-0dad-47c8-84bf-9607bbe689a2">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>0d233216-6316-4ddf-823a-241584a1a5de</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\workspace\ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV1\ElectricalEngineering.BlazorUi\Data\app.db</jdbc-url>
