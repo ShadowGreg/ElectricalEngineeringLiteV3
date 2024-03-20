@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34414.90
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineeringLiteV3", "ElectricalEngineeringLiteV3\ElectricalEngineeringLiteV3.csproj", "{FC27A050-25D8-4C56-8263-8B1D3E984B24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreV02", "CoreV02\CoreV02.csproj", "{953B95EA-8CF2-4B97-8E76-F8C25B6F1C43}"
@@ -18,21 +21,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseSL01", "DataBaseSL0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "legacy", "legacy", "{E1170766-D53A-467C-8FB7-F60496629E38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.CADCore", "ElectricalEngineering.CADCore\ElectricalEngineering.CADCore.csproj", "{2F7B9182-E8C6-4819-B8AE-D36B135DFF87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricalEngineering.CADCore", "ElectricalEngineering.CADCore\ElectricalEngineering.CADCore.csproj", "{2F7B9182-E8C6-4819-B8AE-D36B135DFF87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.Domain", "ElectricalEngineering.Domain\ElectricalEngineering.Domain.csproj", "{FBE3BB76-BD85-4C7B-9784-F48F64DC6EC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricalEngineering.Domain", "ElectricalEngineering.Domain\ElectricalEngineering.Domain.csproj", "{FBE3BB76-BD85-4C7B-9784-F48F64DC6EC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.Data", "ElectricalEngineering.Data\ElectricalEngineering.Data.csproj", "{444143D2-DE34-47CE-A365-AA15492CF33A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricalEngineering.Data", "ElectricalEngineering.Data\ElectricalEngineering.Data.csproj", "{444143D2-DE34-47CE-A365-AA15492CF33A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{7BF9F729-EBCE-4BCC-92C3-9900BA4A605B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.Tests", "ElectricalEngineering.Tests\ElectricalEngineering.Tests.csproj", "{A38B17B5-893B-4280-9EC4-1C257312CFFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricalEngineering.Tests", "ElectricalEngineering.Tests\ElectricalEngineering.Tests.csproj", "{A38B17B5-893B-4280-9EC4-1C257312CFFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.DomainServices", "ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj", "{2B08FCDC-2684-424A-9B74-619940B083D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricalEngineering.DomainServices", "ElectricalEngineering.DomainServices\ElectricalEngineering.DomainServices.csproj", "{2B08FCDC-2684-424A-9B74-619940B083D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.Presentation", "ElectricalEngineering.Presentation\ElectricalEngineering.Presentation.csproj", "{2D6B8637-BA0D-41FB-AC02-44DC0D3183D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricalEngineering.Presentation", "ElectricalEngineering.Presentation\ElectricalEngineering.Presentation.csproj", "{2D6B8637-BA0D-41FB-AC02-44DC0D3183D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.BlazorUI", "ElectricalEngineering.BlazorUI\ElectricalEngineering.BlazorUI.csproj", "{F6164608-383B-47F0-825C-ED674B3B35D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectricalEngineering.BlazorUI", "ElectricalEngineering.BlazorUI\ElectricalEngineering.BlazorUI.csproj", "{F6164608-383B-47F0-825C-ED674B3B35D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectricalEngineering.MudBlazorUI", "ElectricalEngineering.MudBlazorUI\ElectricalEngineering.MudBlazorUI.csproj", "{6EC01664-F3F3-4347-A69F-7242E61A218C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,17 +105,24 @@ Global
 		{F6164608-383B-47F0-825C-ED674B3B35D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6164608-383B-47F0-825C-ED674B3B35D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6164608-383B-47F0-825C-ED674B3B35D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC01664-F3F3-4347-A69F-7242E61A218C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC01664-F3F3-4347-A69F-7242E61A218C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC01664-F3F3-4347-A69F-7242E61A218C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC01664-F3F3-4347-A69F-7242E61A218C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{822FEC1D-2C81-4128-907C-14D472BECFF4} = {E1170766-D53A-467C-8FB7-F60496629E38}
-		{492C3314-A1BD-4BE9-9F60-2079728DD634} = {E1170766-D53A-467C-8FB7-F60496629E38}
-		{69476E7E-EE79-416E-8350-CE1AF346EECE} = {E1170766-D53A-467C-8FB7-F60496629E38}
+		{FC27A050-25D8-4C56-8263-8B1D3E984B24} = {E1170766-D53A-467C-8FB7-F60496629E38}
 		{953B95EA-8CF2-4B97-8E76-F8C25B6F1C43} = {E1170766-D53A-467C-8FB7-F60496629E38}
+		{492C3314-A1BD-4BE9-9F60-2079728DD634} = {E1170766-D53A-467C-8FB7-F60496629E38}
+		{FFD1CD26-4818-4C75-8869-18F6569A7960} = {E1170766-D53A-467C-8FB7-F60496629E38}
+		{822FEC1D-2C81-4128-907C-14D472BECFF4} = {E1170766-D53A-467C-8FB7-F60496629E38}
+		{69476E7E-EE79-416E-8350-CE1AF346EECE} = {E1170766-D53A-467C-8FB7-F60496629E38}
 		{FD72B423-94A0-43E5-AEF1-FA8B52B66700} = {E1170766-D53A-467C-8FB7-F60496629E38}
 		{489F9BAD-AF77-4FD7-9EAD-A42DF2E8C12D} = {E1170766-D53A-467C-8FB7-F60496629E38}
-		{FFD1CD26-4818-4C75-8869-18F6569A7960} = {E1170766-D53A-467C-8FB7-F60496629E38}
-		{FC27A050-25D8-4C56-8263-8B1D3E984B24} = {E1170766-D53A-467C-8FB7-F60496629E38}
-		{444143D2-DE34-47CE-A365-AA15492CF33A} = {7BF9F729-EBCE-4BCC-92C3-9900BA4A605B}
 		{2F7B9182-E8C6-4819-B8AE-D36B135DFF87} = {7BF9F729-EBCE-4BCC-92C3-9900BA4A605B}
+		{444143D2-DE34-47CE-A365-AA15492CF33A} = {7BF9F729-EBCE-4BCC-92C3-9900BA4A605B}
 	EndGlobalSection
 EndGlobal
